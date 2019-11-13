@@ -1,0 +1,15 @@
+[
+{
+  "modid": "tinkerfirmacraft",
+  "name": "Tinkerfirmacraft",
+  "description": "Tinker construct support for terrafirmacraft",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Mrthomas20121"],
+  "credits": "Mrthomas20121",
+  "logoFile": "",
+  "screenshots": []
+}
+]
