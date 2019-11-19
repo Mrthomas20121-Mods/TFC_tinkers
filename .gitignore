@@ -15,7 +15,6 @@ Thumbs.db
 #gradle stuff
 /.gradle
 /build/
-/libs/
 /sources/
 /run*/
 /ui/
