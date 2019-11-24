@@ -19,6 +19,7 @@ public class CommonProxy {
 
     public void postInit(FMLPostInitializationEvent e) {
     }
+
     @SubscribeEvent
     public void registerHarvestLevels() {
         harvestLevelNames.put(7, "harvestlevel.redsteel");
