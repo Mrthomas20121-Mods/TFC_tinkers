@@ -1,20 +1,20 @@
 # TFC Materials
-material.sterlingsilver.name=Sterling Silver
-material.rosegold.name=Rose Gold
+material.sterling_silver.name=Sterling Silver
+material.rose_gold.name=Rose Gold
 material.bismuth.name=Bismuth
-material.redsteel.name=Red Steel
-material.bluesteel.name=Blue Steel
-material.blacksteel.name=Black Steel
-material.wroughtiron.name=Wrought Iron
+material.red_steel.name=Red Steel
+material.blue_steel.name=Blue Steel
+material.black_steel.name=Black Steel
+material.wrought_iron.name=Wrought Iron
 material.platinum.name=Platinum
 material.zinc.name=Zinc
 material.nickel.name=Nickel
-material.bismuthbronze.name=Bismuth Bronze
-material.blackbronze.name=Black Bronze
+material.bismuth_bronze.name=Bismuth Bronze
+material.black_bronze.name=Black Bronze
 
 # TFC Metallum Materials
 material.tungsten.name=Tungsten
-material.tungstensteel.name=Tungsten Steel
+material.tungsten_steel.name=Tungsten Steel
 material.titanium.name=Titanium
 material.osmium.name=Osmium
 material.aluminum.name=Aluminum
@@ -23,3 +23,10 @@ material.antimony.name=Antimony
 # harvest levels
 harvestlevel.redsteel = %1Red Steel
 harvestlevel.bluesteel = %2Blue Steel
+
+# traits
+modifier.brittle.name=Brittle
+modifier.brittle.desc=§oIt's meant to be broken!§r\nThe Tools is slowing losing durability
+
+modifier.ferromagnetism.name=Ferromagnetism
+modifier.ferromagnetism.desc=§oIt's Magical§r\nBreaking Iron seems to give strange power

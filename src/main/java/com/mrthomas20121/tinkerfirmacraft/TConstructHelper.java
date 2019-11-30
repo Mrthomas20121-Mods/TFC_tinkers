@@ -1,43 +1,25 @@
 package com.mrthomas20121.tinkerfirmacraft;
 
-import com.mrthomas20121.tinkerfirmacraft.Config.Config;
-import com.mrthomas20121.tinkerfirmacraft.proxy.ClientProxy;
-import com.mrthomas20121.tinkerfirmacraft.proxy.CommonProxy;
-import static net.dries007.tfc.types.DefaultMetals.*;
-
-import net.dries007.tfc.api.recipes.knapping.KnappingRecipeStone;
-import net.dries007.tfc.api.types.Metal;
-import net.dries007.tfc.api.types.Rock;
-import net.dries007.tfc.compat.jei.wrappers.KnappingRecipeWrapper;
-import net.dries007.tfc.objects.fluids.properties.FluidWrapper;
+import net.dries007.tfc.util.forge.ForgeRule;
+import net.dries007.tfc.api.recipes.anvil.*;
 import net.dries007.tfc.objects.items.ItemTFC;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.Event;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.oredict.OreDictionary;
 import slimeknights.tconstruct.library.MaterialIntegration;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.client.MaterialRenderInfo;
 import slimeknights.tconstruct.library.materials.*;
-import slimeknights.tconstruct.library.tinkering.TinkersItem;
-import slimeknights.tconstruct.library.traits.AbstractTrait;
 import slimeknights.tconstruct.library.utils.HarvestLevels;
 import slimeknights.tconstruct.smeltery.TinkerSmeltery;
 import slimeknights.tconstruct.tools.TinkerTraits;
-import slimeknights.tconstruct.tools.traits.TraitMagnetic;
-import net.dries007.tfc.objects.fluids.FluidsTFC;
-import net.dries007.tfc.objects.items.ItemsTFC;
+import com.mrthomas20121.tinkerfirmacraft.Config.Config;
 import com.mrthomas20121.tinkerfirmacraft.Traits.TraitsHelper;
+import com.mrthomas20121.tinkerfirmacraft.TMaterial;
 import net.minecraftforge.fml.common.Loader;
 
 @Mod.EventBusSubscriber(modid=TinkerFirmaCraft.MODID)
@@ -48,15 +30,15 @@ public class TConstructHelper {
     }
     public static TConstructHelper helper = new TConstructHelper();
 
-    public static final Material sterlingSilver = new Material("sterlingSilver", 0xCABEB6);
-    public static final Material roseGold = new Material("rosegold", 0xF7CCBC);
-    public static final Material redSteel = new Material("redsteel", 0xBB3434);
-    public static final Material blueSteel = new Material("bluesteel", 0x4673AD);
-    public static final Material blackSteel = new Material("blacksteel", 0x303030);
-    public static final Material blackBronze = new Material("blackbronze", 0x5A344A);
-    public static final Material bismuthBronze = new Material("bismuthbronze", 0x477D51);
+    public static final Material sterlingSilver = new Material("sterling_silver", 0xCABEB6);
+    public static final Material roseGold = new Material("rose_gold", 0xF7CCBC);
+    public static final Material redSteel = new Material("red_steel", 0xBB3434);
+    public static final Material blueSteel = new Material("blue_steel", 0x4673AD);
+    public static final Material blackSteel = new Material("black_steel", 0x303030);
+    public static final Material blackBronze = new Material("black_bronze", 0x5A344A);
+    public static final Material bismuthBronze = new Material("bismuth_bronze", 0x477D51);
     public static final Material bismuth = new Material("bismuth", 0x4B614E);
-    public static final Material wroughtIron = new Material("wroughtiron", 0xBABABA);
+    public static final Material wroughtIron = new Material("wrought_iron", 0xBABABA);
     public static final Material platinum = new Material("platinum", 0x434C57);
     public static final Material nickel = new Material("nickel", 0x80806B);
     public static final Material zinc = new Material("zinc", 0xE1E4E1);
@@ -74,6 +56,9 @@ public class TConstructHelper {
     public static final Material mithril = new Material("mithril", 0x8ADAF6);
     public static final Material invar = new Material("invar", 0xC0C0B3);
 
+    public String[] OredictNames = {"SterlingSilver", "RoseGold", "RedSteel", "BlueSteel", "BlackSteel", "BlackBronze", "BismuthBronze", "Bismuth", "WroughtIron", "Platinum"};
+    public String[] FluidNames = {"sterling_silver", "rose_gold", "red_steel", "blue_steel", "black_steel", "black_bronze", "bismuth_bronze", "bismuth", "wrought_iron", "platinum"};
+
     public void preInit()
 	{
 	    TinkerFirmaCraft.logger.info("Loading TFC TIC Materials");
@@ -88,8 +73,9 @@ public class TConstructHelper {
             blackSteel.addTrait(TraitsHelper.Crude4, MaterialTypes.PROJECTILE);
             blackSteel.addTrait(TinkerTraits.stiff, MaterialTypes.EXTRA);
             blackSteel.setCraftable(false).setCastable(true);
+            blackSteel.setRenderInfo(0x303030);
             TinkerRegistry.addMaterialStats(blackSteel,
-                    new HeadMaterialStats(540, 8.00f, 7.00f, HarvestLevels.OBSIDIAN),
+                    new HeadMaterialStats(540, 9.00f, 13.3f, HarvestLevels.OBSIDIAN),
                     new HandleMaterialStats(0.9f, 150),
                     new ExtraMaterialStats(30));
             TinkerRegistry.addMaterialStats(blackSteel, new BowMaterialStats(1.0f, 0.9f, 3.0f), new ArrowShaftMaterialStats(1.5f, 1));
@@ -98,7 +84,7 @@ public class TConstructHelper {
 
         if(Config.blue_steel) {
             // blue steel
-            Fluid blueSteelFluid = FluidRegistry.getFluid(("red_steel"));
+            Fluid blueSteelFluid = FluidRegistry.getFluid(("blue_steel"));
             blueSteel.setRepresentativeItem("ingotBlueSteel");
             blueSteel.addCommonItems("BlueSteel");
             blueSteel.setFluid(blueSteelFluid);
@@ -108,10 +94,10 @@ public class TConstructHelper {
             blueSteel.addTrait(TinkerTraits.poisonous, MaterialTypes.PROJECTILE);
             blueSteel.addTrait(TinkerTraits.stiff, MaterialTypes.EXTRA);
             TinkerRegistry.addMaterialStats(blueSteel,
-                    new HeadMaterialStats(740, 9.00f, 9.00f, 6),
-                    new HandleMaterialStats(0.9f, 150),
-                    new ExtraMaterialStats(30));
-            TinkerRegistry.addMaterialStats(blueSteel, new BowMaterialStats(1.0f, 0.9f, 3.0f), new ArrowShaftMaterialStats(1.5f, 1));
+                    new HeadMaterialStats(1400, 11.00f, 15.00f, 6),
+                    new HandleMaterialStats(0.9f, 300),
+                    new ExtraMaterialStats(300));
+            TinkerRegistry.addMaterialStats(blueSteel, new BowMaterialStats(4.0f, 4, 6.0f), new ArrowShaftMaterialStats(1.8f, 3));
             TinkerRegistry.integrate(blueSteel, blueSteelFluid, "BlueSteel").toolforge().preInit();
         }
 
@@ -127,10 +113,10 @@ public class TConstructHelper {
             redSteel.addTrait(TinkerTraits.poisonous, MaterialTypes.PROJECTILE);
             redSteel.addTrait(TinkerTraits.stiff, MaterialTypes.EXTRA);
             TinkerRegistry.addMaterialStats(redSteel,
-                    new HeadMaterialStats(800, 11.00f, 11.00f, 7),
-                    new HandleMaterialStats(0.9f, 150),
-                    new ExtraMaterialStats(30));
-            TinkerRegistry.addMaterialStats(redSteel, new BowMaterialStats(1.0f, 0.9f, 3.0f), new ArrowShaftMaterialStats(1.8f, 2));
+                    new HeadMaterialStats(1400, 11.00f, 154.00f, 7),
+                    new HandleMaterialStats(0.9f, 300),
+                    new ExtraMaterialStats(300));
+            TinkerRegistry.addMaterialStats(redSteel, new BowMaterialStats(4.0f, 4, 6.0f), new ArrowShaftMaterialStats(1.8f, 3));
             TinkerRegistry.integrate(redSteel, redSteelFluid, "RedSteel").toolforge().preInit();
         }
 
@@ -170,14 +156,14 @@ public class TConstructHelper {
         wroughtIron.setRepresentativeItem("ingotWroughtIron");
         wroughtIron.addCommonItems("WroughtIron");
         wroughtIron.setFluid(wroughtIronFluid);
-        wroughtIron.addTrait(TinkerTraits.established);
+        wroughtIron.addTrait(TinkerTraits.magnetic);
         wroughtIron.addTrait(TraitsHelper.Magnetic3, MaterialTypes.HEAD);
-        wroughtIron.addTrait(TinkerTraits.jagged, MaterialTypes.EXTRA);
+        wroughtIron.addTrait(TinkerTraits.crumbling, MaterialTypes.EXTRA);
         TinkerRegistry.addMaterialStats(wroughtIron,
-                new HeadMaterialStats(500, 6.3f, 5.00f, HarvestLevels.DIAMOND),
+                new HeadMaterialStats(800, 8.1f, 9.2f, HarvestLevels.DIAMOND),
                 new HandleMaterialStats(1.1f, 200),
                 new ExtraMaterialStats(100));
-        TinkerRegistry.addMaterialStats(wroughtIron, new BowMaterialStats(0.25f, 4.2f, 1.0f), new ArrowShaftMaterialStats(1.0f, 0));
+        TinkerRegistry.addMaterialStats(wroughtIron, new BowMaterialStats(3.2f, 5.2f, 1.0f), new ArrowShaftMaterialStats(3.2f, 0));
         TinkerRegistry.integrate(wroughtIron, wroughtIronFluid, "WroughtIron").toolforge().preInit();
 
         // bismuth
@@ -187,9 +173,9 @@ public class TConstructHelper {
         bismuth.setFluid(bismuthFluid);
         bismuth.addTrait(TinkerTraits.dense);
         bismuth.addTrait(TraitsHelper.Magnetic3, MaterialTypes.HEAD);
-        bismuth.addTrait(TinkerTraits.poisonous, MaterialTypes.EXTRA);
+        bismuth.addTrait(TinkerTraits.magnetic, MaterialTypes.EXTRA);
         TinkerRegistry.addMaterialStats(bismuth,
-                new HeadMaterialStats(200, 5.2f, 4.00f, HarvestLevels.IRON),
+                new HeadMaterialStats(210, 5.3f, 4.9f, HarvestLevels.IRON),
                 new HandleMaterialStats(1f, 150),
                 new ExtraMaterialStats(10));
         TinkerRegistry.addMaterialStats(bismuth, new BowMaterialStats(0.25f, 4.2f, 1.0f), new ArrowShaftMaterialStats(1.0f, 0));
@@ -206,7 +192,7 @@ public class TConstructHelper {
         bismuthBronze.addTrait(TinkerTraits.heavy, MaterialTypes.EXTRA);
         bismuthBronze.setCastable(true).setCraftable(false);
         TinkerRegistry.addMaterialStats(bismuthBronze,
-                new HeadMaterialStats(300, 6, 6, HarvestLevels.IRON),
+                new HeadMaterialStats(300, 7, 6, HarvestLevels.DIAMOND),
                 new HandleMaterialStats(1.3f, 120),
                 new ExtraMaterialStats(300));
         TinkerRegistry.addMaterialStats(bismuthBronze, new BowMaterialStats(0.40f, 1.9f, 7.2f), new ArrowShaftMaterialStats(1.1f, 2));
@@ -229,6 +215,22 @@ public class TConstructHelper {
         TinkerRegistry.addMaterialStats(blackBronze, new BowMaterialStats(0.70f, 4.9f, 4.2f), new ArrowShaftMaterialStats(1.1f, 1));
         TinkerRegistry.integrate(blackBronze, blackBronzeFluid, "BlackBronze").toolforge().preInit();
 
+        // zinc
+        Fluid zincFluid = FluidRegistry.getFluid(("zinc"));
+        zinc.setFluid(zincFluid);
+        zinc.setRepresentativeItem("ingotZinc");
+        zinc.addCommonItems("Zinc");
+        zinc.addTrait(TraitsHelper.brittle);
+        zinc.addTrait(TraitsHelper.brittle, MaterialTypes.HEAD);
+        zinc.addTrait(TraitsHelper.brittle, MaterialTypes.EXTRA);
+        zinc.setCastable(true).setCraftable(false);
+        TinkerRegistry.addMaterialStats(zinc,
+                new HeadMaterialStats(300, 5, 4, HarvestLevels.DIAMOND),
+                new HandleMaterialStats(1.2f, 190),
+                new ExtraMaterialStats(120));
+        TinkerRegistry.addMaterialStats(zinc, new BowMaterialStats(0.70f, 4.9f, 4.2f), new ArrowShaftMaterialStats(1, 2));
+        TinkerRegistry.integrate(zinc, zincFluid).toolforge().preInit();
+
         if(!Loader.isModLoaded("plustic")) {
 
             // platinum
@@ -241,48 +243,31 @@ public class TConstructHelper {
             platinum.addTrait(TinkerTraits.dense, MaterialTypes.EXTRA);
             platinum.setCastable(true).setCraftable(false);
             TinkerRegistry.addMaterialStats(platinum,
-                    new HeadMaterialStats(800, 8, 8, HarvestLevels.DIAMOND),
+                    new HeadMaterialStats(800, 7.2f, 8.9f, HarvestLevels.DIAMOND),
                     new HandleMaterialStats(2, 300),
                     new ExtraMaterialStats(300));
-            TinkerRegistry.addMaterialStats(platinum, new BowMaterialStats(0.70f, 4.9f, 4.2f), new ArrowShaftMaterialStats(1, 2));
-            TinkerRegistry.integrate(platinum, platinumFluid, "Platinum").toolforge().preInit();
+            TinkerRegistry.addMaterialStats(platinum, new BowMaterialStats(0.2f, 9.2f, 6.1f), new ArrowShaftMaterialStats(1.9f, 1));
+            TinkerRegistry.integrate(platinum, platinumFluid).toolforge().preInit();
 
             // nickel
             Fluid nickelFluid = FluidRegistry.getFluid(("nickel"));
             nickel.setFluid(nickelFluid);
             nickel.setRepresentativeItem("ingotNickel");
-            //nickel.addCommonItems("Nickel");
-            nickel.addTrait(TinkerTraits.heavy);
+            nickel.addCommonItems("Nickel");
+            nickel.addTrait(TraitsHelper.ferromagnetism);
             nickel.addTrait(TinkerTraits.poisonous, MaterialTypes.HEAD);
-            nickel.addTrait(TinkerTraits.crumbling, MaterialTypes.EXTRA);
+            nickel.addTrait(TraitsHelper.ferromagnetism, MaterialTypes.EXTRA);
             nickel.setCastable(true).setCraftable(false);
             TinkerRegistry.addMaterialStats(nickel,
-                    new HeadMaterialStats(500, 7, 8, HarvestLevels.DIAMOND),
+                    new HeadMaterialStats(500, 5.2f, 7, HarvestLevels.DIAMOND),
                     new HandleMaterialStats(1.2f, 190),
                     new ExtraMaterialStats(120));
             TinkerRegistry.addMaterialStats(nickel, new BowMaterialStats(0.70f, 4.9f, 4.2f), new ArrowShaftMaterialStats(1, 2));
-            TinkerRegistry.integrate(nickel, nickelFluid, "Nickel").toolforge().preInit();
-        }
-        if(!Loader.isModLoaded("nuclearcraft")) {
-            // zinc
-            Fluid zincFluid = FluidRegistry.getFluid(("zinc"));
-            zinc.setFluid(zincFluid);
-            zinc.setRepresentativeItem("ingotZinc");
-            //zinc.addCommonItems("Zinc");
-            zinc.addTrait(TinkerTraits.momentum);
-            zinc.addTrait(TinkerTraits.unnatural, MaterialTypes.HEAD);
-            zinc.addTrait(TinkerTraits.dense, MaterialTypes.EXTRA);
-            zinc.setCastable(true).setCraftable(false);
-            TinkerRegistry.addMaterialStats(zinc,
-                    new HeadMaterialStats(500, 7, 8, HarvestLevels.DIAMOND),
-                    new HandleMaterialStats(1.2f, 190),
-                    new ExtraMaterialStats(120));
-            TinkerRegistry.addMaterialStats(zinc, new BowMaterialStats(0.70f, 4.9f, 4.2f), new ArrowShaftMaterialStats(1, 2));
-            TinkerRegistry.integrate(zinc, zincFluid, "Zinc").toolforge().preInit();
+            TinkerRegistry.integrate(nickel, nickelFluid).toolforge().preInit();
         }
 
         if(!Loader.isModLoaded("plustic") && Loader.isModLoaded("tfcmetallum")) {
-            // load
+            // load tfcmetallum materials
         }
 
         TinkerFirmaCraft.logger.info("TFC TIC Materials Loaded");
@@ -290,7 +275,60 @@ public class TConstructHelper {
 
     public void init()
 	{
+	    // Fluids
+        Fluid blackSteelFluid = FluidRegistry.getFluid(("black_steel"));
+        Fluid blueSteelFluid = FluidRegistry.getFluid(("blue_steel"));
+        Fluid redSteelFluid = FluidRegistry.getFluid(("red_steel"));
+        Fluid copperFluid = FluidRegistry.getFluid("copper");
+        Fluid silverFluid = FluidRegistry.getFluid("silver");
+        Fluid sterlingSilverFluid = FluidRegistry.getFluid(("sterling_silver"));
+        Fluid roseGoldFluid = FluidRegistry.getFluid(("rose_gold"));
+        Fluid blackBronzeFluid = FluidRegistry.getFluid(("black_bronze"));
+        Fluid bismuthFluid = FluidRegistry.getFluid(("bismuth"));
+        Fluid bismuthBronzeFluid = FluidRegistry.getFluid(("bismuth_bronze"));
+        Fluid wroughtIronFluid = FluidRegistry.getFluid(("wrought_iron"));
+        Fluid platinumFluid = FluidRegistry.getFluid(("platinum"));
 
+        for (int i = 0; i<OredictNames.length; i++) {
+            Fluid fl = FluidRegistry.getFluid((FluidNames[i]));
+            TinkerSmeltery.registerOredictMeltingCasting(fl, OredictNames[i]);
+            TinkerRegistry.registerMelting("ingotDouble" + OredictNames[i], fl, TMaterial.VALUE_DOUBLE_INGOT);
+            TinkerRegistry.registerMelting("sheet" + OredictNames[i], fl, TMaterial.VALUE_SHEET);
+            TinkerRegistry.registerMelting("sheetDouble" + OredictNames[i], fl, TMaterial.VALUE_DOUBLE_SHEET);
+        }
+        // addition
+        blackSteel.setFluid(blackSteelFluid);
+        blackSteel.setCraftable(false).setCastable(true);
+        blueSteel.setFluid(blueSteelFluid);
+        blueSteel.setCraftable(false).setCastable(true);
+        redSteel.setFluid(redSteelFluid);
+        redSteel.setCraftable(false).setCastable(true);
+        blackBronze.setFluid(blackBronzeFluid);
+        blackBronze.setCraftable(false).setCastable(true);
+        bismuthBronze.setFluid(bismuthBronzeFluid);
+        bismuthBronze.setCraftable(false).setCastable(true);
+        bismuth.setFluid(bismuthFluid);
+        bismuth.setCraftable(false).setCastable(true);
+        sterlingSilver.setFluid(sterlingSilverFluid);
+        sterlingSilver.setCraftable(false).setCastable(true);
+        wroughtIron.setFluid(wroughtIronFluid);
+        wroughtIron.setCraftable(false).setCastable(true);
+        roseGold.setFluid(roseGoldFluid);
+        roseGold.setCraftable(false).setCastable(true);
+        platinum.setFluid(platinumFluid);
+        platinum.setCraftable(false).setCastable(true);
+
+        // register hot_water as a smeltery fluid
+        Fluid hot_water = FluidRegistry.getFluid("hot_water");
+        TinkerRegistry.registerSmelteryFuel(new FluidStack(hot_water, 1000),600);
+
+        TinkerSmeltery.registerOredictMeltingCasting(roseGoldFluid, "RoseGold");
+        // register Alloy
+        if(Config.register_alloy) {
+            // sterling silver
+            TinkerRegistry.registerAlloy(new FluidStack(sterlingSilverFluid, 144), new FluidStack(copperFluid, 144*2), new FluidStack(silverFluid, 144*4));
+
+        }
    }
 
 	public void postInit()
