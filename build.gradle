@@ -39,7 +39,7 @@ repositories {
     }
 }
 
-version = "1.0.0"
+version = "1.0.1"
 group= "mrthomas20121.tinkerfirmacraft"
 archivesBaseName = "tinkerfirmacraft"
 
