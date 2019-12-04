@@ -11,7 +11,7 @@ assignees: ''
 a description of the bug/crash report
 
 **To Reproduce**
-Steps to reproduce the bug/crash:
+Steps to reproduce the bug/crash.
 
 
 **Expected behavior**
