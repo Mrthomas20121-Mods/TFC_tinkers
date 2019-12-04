@@ -7,26 +7,26 @@ assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**Describe the bug/crashreport**
+a description of the bug/crash report
 
 **To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+Steps to reproduce the bug/crash:
+
 
 **Expected behavior**
-A clear and concise description of what you expected to happen.
+What should happen.
 
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
-**Version**
- - Minecraft: [e.g. 1.12]
- - TinkerFirmaCraft [e.g. 0.0.1]
- - Forge [e.g. 14.23.5.2847]
+**Crash report Link**
+post your crash report to pastebin or other sites to help me figure out what is wrong.
 
-**Additional context**
-Add any other context about the problem here.
+**Version**
+ - Minecraft: :
+ - TinkerFirmaCraft :
+ - Forge :
+
+**Additional mods involved**
+Add any other mods about the problem here(mod:version).
