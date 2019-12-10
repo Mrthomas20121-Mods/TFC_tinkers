@@ -45,7 +45,7 @@ public class Config {
         // cfg.getBoolean() will get the value in the config if it is already specified there. If not it will create the value.
         black_steel = cfg.getBoolean("black_steel", CATEGORY_METERIALS, black_steel, "Set to false to disable black steel");
         red_steel = cfg.getBoolean("red_steel", CATEGORY_METERIALS, red_steel, "Set to false to disable red steel");
-        blue_steel = cfg.getBoolean("red_steel", CATEGORY_METERIALS, blue_steel, "Set to false to disable blue steel");
+        blue_steel = cfg.getBoolean("blue_steel", CATEGORY_METERIALS, blue_steel, "Set to false to disable blue steel");
         roseGold = cfg.getBoolean("rose_gold", CATEGORY_METERIALS, roseGold, "Set to false to disable rose gold");
         sterlingSilver = cfg.getBoolean("sterling_silver", CATEGORY_METERIALS, sterlingSilver, "Set to false to disable sterling silver");
         wrought_iron = cfg.getBoolean("wrought_iron", CATEGORY_METERIALS, wrought_iron, "Set to false to disable wrought iron");
