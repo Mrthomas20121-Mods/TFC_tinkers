@@ -59,6 +59,7 @@ public class TConstructHelper {
     // public static final Material electrum = new Material("electrum", 0xDFB950);
     public static final Material mithril = new Material("mithril", 0x8ADAF6);
     public static final Material invar = new Material("invar", 0xC0C0B3);
+    public static final boolean metallum = Loader.isModLoaded("tfcmetallum");
 
     public String[] OredictNames = {"Bismuth", "BismuthBronze", "BlackBronze", "SterlingSilver", "RoseGold", "WroughtIron", "Platinum", "BlackSteel", "RedSteel", "BlueSteel"};
     public void preInit()
@@ -76,7 +77,6 @@ public class TConstructHelper {
             blackSteel.addTrait(TraitsHelper.Crude4, MaterialTypes.PROJECTILE);
             blackSteel.addTrait(TinkerTraits.stiff, MaterialTypes.EXTRA);
             blackSteel.setCraftable(false).setCastable(true);
-            blackSteel.setRenderInfo(0x303030);
             TinkerRegistry.addMaterialStats(blackSteel,
                     new HeadMaterialStats(540, 11.09f, 13.3f, HarvestLevels.OBSIDIAN),
                     new HandleMaterialStats(0.9f, 150),
@@ -296,21 +296,23 @@ public class TConstructHelper {
             TinkerRegistry.integrate(nickel, nickelFluid).toolforge().preInit();
 
             // load tfcmetallum materials
-            if(Loader.isModLoaded("tfcmetallum")) {
-                Fluid constantanFluid = FluidRegistry.getFluid(("constantan"));
-                constantan.setFluid(constantanFluid);
-                constantan.setRepresentativeItem("ingotConstantan");
-                constantan.addCommonItems("Constantan");
-                constantan.addTrait(TraitsHelper.ferromagnetism);
-                constantan.addTrait(TinkerTraits.poisonous, MaterialTypes.HEAD);
-                constantan.addTrait(TraitsHelper.ferromagnetism, MaterialTypes.EXTRA);
-                constantan.setCastable(true).setCraftable(false);
-                TinkerRegistry.addMaterialStats(constantan,
-                        new HeadMaterialStats(800, 8.2f, 8, HarvestLevels.DIAMOND),
-                        new HandleMaterialStats(0.9f, 300),
-                        new ExtraMaterialStats(300));
-                TinkerRegistry.addMaterialStats(constantan, new BowMaterialStats(0.70f, 4.9f, 4.2f), new ArrowShaftMaterialStats(1, 2));
-                TinkerRegistry.integrate(constantan, constantanFluid).toolforge().preInit();
+            if(metallum) {
+                if(!Loader.isModLoaded("immersiveengineering")) {
+                    Fluid constantanFluid = FluidRegistry.getFluid(("constantan"));
+                    constantan.setFluid(constantanFluid);
+                    constantan.setRepresentativeItem("ingotConstantan");
+                    constantan.addCommonItems("Constantan");
+                    constantan.addTrait(TinkerTraits.crumbling);
+                    constantan.addTrait(TinkerTraits.jagged, MaterialTypes.HEAD);
+                    constantan.addTrait(TinkerTraits.crumbling, MaterialTypes.EXTRA);
+                    constantan.setCastable(true).setCraftable(false);
+                    TinkerRegistry.addMaterialStats(constantan,
+                            new HeadMaterialStats(800, 8.2f, 8, HarvestLevels.DIAMOND),
+                            new HandleMaterialStats(0.9f, 300),
+                            new ExtraMaterialStats(300));
+                    TinkerRegistry.addMaterialStats(constantan, new BowMaterialStats(0.70f, 4.9f, 4.2f), new ArrowShaftMaterialStats(1, 2));
+                    TinkerRegistry.integrate(constantan, constantanFluid).toolforge().preInit();
+                }
             }
         }
 
@@ -318,7 +320,7 @@ public class TConstructHelper {
 
     public void init()
 	{
-        Fluid[] Fluids = {FluidRegistry.getFluid(("bismuth")).setTemperature(370), FluidRegistry.getFluid(("bismuth_bronze")).setTemperature(985), FluidRegistry.getFluid(("black_bronze")).setTemperature(1070), FluidRegistry.getFluid(("sterling_silver")).setTemperature(900), FluidRegistry.getFluid(("rose_gold")).setTemperature(960), FluidRegistry.getFluid(("wrought_iron")).setTemperature(1535), FluidRegistry.getFluid(("platinum")).setTemperature(1730), FluidRegistry.getFluid(("black_steel")).setTemperature(1485), FluidRegistry.getFluid(("red_steel")).setTemperature(1540), FluidRegistry.getFluid(("blue_steel")).setTemperature(1540)};
+        Fluid[] Fluids = {FluidRegistry.getFluid(("bismuth")).setTemperature(370), FluidRegistry.getFluid(("bismuth_bronze")).setTemperature(985), FluidRegistry.getFluid(("black_bronze")).setTemperature(1070), FluidRegistry.getFluid(("sterling_silver")).setTemperature(900), FluidRegistry.getFluid(("rose_gold")).setTemperature(960), FluidRegistry.getFluid(("wrought_iron")).setTemperature(1000), FluidRegistry.getFluid(("platinum")).setTemperature(930), FluidRegistry.getFluid(("black_steel")).setTemperature(1000), FluidRegistry.getFluid(("red_steel")).setTemperature(1000), FluidRegistry.getFluid(("blue_steel")).setTemperature(1000)};
         // Fluids
         Fluid blackSteelFluid = FluidRegistry.getFluid(("black_steel"));
         Fluid blueSteelFluid = FluidRegistry.getFluid(("blue_steel"));
@@ -337,12 +339,13 @@ public class TConstructHelper {
         Fluid platinumFluid = FluidRegistry.getFluid(("platinum"));
         Fluid goldFluid = FluidRegistry.getFluid(("gold"));
         Fluid bronzeFluid = FluidRegistry.getFluid(("bronze"));
+        Fluid brassFluid = FluidRegistry.getFluid(("brass"));
         Fluid zincFluid = FluidRegistry.getFluid(("zinc"));
         Fluid tungstenFluid = FluidRegistry.getFluid(("tungsten"));
         Fluid tungstenSteelFluid = FluidRegistry.getFluid(("tungsten_steel"));
         Fluid steelFluid = FluidRegistry.getFluid(("steel"));
-        Fluid brassFluid = FluidRegistry.getFluid(("brass"));
         Fluid nickelFluid = FluidRegistry.getFluid(("nickel"));
+        Fluid constantanFluid = FluidRegistry.getFluid(("constantan"));
 
         for (int i = 0; i<OredictNames.length; i++) {
             TinkerSmeltery.registerOredictMeltingCasting(Fluids[i], OredictNames[i]);
@@ -371,10 +374,19 @@ public class TConstructHelper {
         roseGold.setCraftable(false).setCastable(true);
         platinum.setFluid(platinumFluid);
         platinum.setCraftable(false).setCastable(true);
+        if(metallum) {
+            constantan.setFluid(constantanFluid);
+            constantan.setCraftable(false).setCastable(true);
+            constantanFluid.setTemperature(750);
+            TinkerSmeltery.registerOredictMeltingCasting(constantanFluid, "Constantan");
+            TinkerRegistry.registerMelting("ingotDouble" + "Constantan", constantanFluid, TMaterial.VALUE_DOUBLE_INGOT);
+            TinkerRegistry.registerMelting("sheet" + "Constantan", constantanFluid, TMaterial.VALUE_SHEET);
+            TinkerRegistry.registerMelting("sheetDouble" + "Constantan", constantanFluid, TMaterial.VALUE_DOUBLE_SHEET);
+        }
 
-        TinkerSmeltery.registerOredictMeltingCasting(blueWeakSteelFluid.setTemperature(1485), "WeakBlueSteel");
-        TinkerSmeltery.registerOredictMeltingCasting(redWeakSteelFluid.setTemperature(1485), "WeakRedSteel");
-        TinkerSmeltery.registerOredictMeltingCasting(weakSteelFluid.setTemperature(1485), "WeakSteel");
+        TinkerSmeltery.registerOredictMeltingCasting(blueWeakSteelFluid.setTemperature(1085), "WeakBlueSteel");
+        TinkerSmeltery.registerOredictMeltingCasting(redWeakSteelFluid.setTemperature(1085), "WeakRedSteel");
+        TinkerSmeltery.registerOredictMeltingCasting(weakSteelFluid.setTemperature(1085), "WeakSteel");
 
         // register hot_water as a smeltery fluid
         Fluid hot_water = FluidRegistry.getFluid("hot_water");
@@ -390,7 +402,7 @@ public class TConstructHelper {
             TinkerRegistry.registerAlloy(new FluidStack(blueWeakSteelFluid, 144), new FluidStack(steelFluid, 144*2), new FluidStack(blackSteelFluid, 144*5), new FluidStack(sterlingSilverFluid, 144), new FluidStack(bismuthBronzeFluid, 144));
             TinkerRegistry.registerAlloy(new FluidStack(weakSteelFluid, 144), new FluidStack(steelFluid, 144*5), new FluidStack(nickelFluid, 144*2), new FluidStack(blackBronzeFluid, 144));
 
-            if(Loader.isModLoaded("tfcmetallum")) {
+            if(metallum) {
                 TinkerRegistry.registerAlloy(new FluidStack(tungstenSteelFluid, 144), new FluidStack(tungstenFluid, 144), new FluidStack(steelFluid, 144*5));
             }
         }
