@@ -19,7 +19,7 @@ public class TinkerFirmaCraft
     public static TinkerFirmaCraft instance;
     public static final String MODID = "tinkerfirmacraft";
     public static final String NAME = "TinkerFirmaCraft";
-    public static final String VERSION = "1.0.3";
+    public static final String VERSION = "1.0.5";
 
     public static Logger logger;
 
