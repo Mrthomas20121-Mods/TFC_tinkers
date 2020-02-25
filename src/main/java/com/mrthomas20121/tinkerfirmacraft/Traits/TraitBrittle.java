@@ -15,7 +15,6 @@ public class TraitBrittle extends AbstractTrait {
 
     @Override
     public void onHit(ItemStack tool, EntityLivingBase player, EntityLivingBase target, float damage, boolean isCritical) {
-        /* Damage the tool on it */
         tool.damageItem(100, player);
     }
     @Override
