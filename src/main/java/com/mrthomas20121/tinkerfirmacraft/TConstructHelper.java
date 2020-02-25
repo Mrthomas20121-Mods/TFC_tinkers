@@ -25,6 +25,7 @@ import com.mrthomas20121.tinkerfirmacraft.Config.Config;
 import com.mrthomas20121.tinkerfirmacraft.Traits.TraitsHelper;
 import com.mrthomas20121.tinkerfirmacraft.TMaterial;
 import net.minecraftforge.fml.common.Loader;
+import net.dries007.tfc.objects.fluids.FluidsTFC;
 
 @Mod.EventBusSubscriber(modid=TinkerFirmaCraft.MODID)
 public class TConstructHelper {
@@ -298,20 +299,140 @@ public class TConstructHelper {
             // load tfcmetallum materials
             if(metallum) {
                 if(!Loader.isModLoaded("immersiveengineering")) {
-                    Fluid constantanFluid = FluidRegistry.getFluid(("constantan"));
-                    constantan.setFluid(constantanFluid);
-                    constantan.setRepresentativeItem("ingotConstantan");
-                    constantan.addCommonItems("Constantan");
-                    constantan.addTrait(TinkerTraits.crumbling);
-                    constantan.addTrait(TinkerTraits.jagged, MaterialTypes.HEAD);
-                    constantan.addTrait(TinkerTraits.crumbling, MaterialTypes.EXTRA);
-                    constantan.setCastable(true).setCraftable(false);
-                    TinkerRegistry.addMaterialStats(constantan,
-                            new HeadMaterialStats(800, 8.2f, 8, HarvestLevels.DIAMOND),
-                            new HandleMaterialStats(0.9f, 300),
-                            new ExtraMaterialStats(300));
-                    TinkerRegistry.addMaterialStats(constantan, new BowMaterialStats(0.70f, 4.9f, 4.2f), new ArrowShaftMaterialStats(1, 2));
-                    TinkerRegistry.integrate(constantan, constantanFluid).toolforge().preInit();
+                    if(Config.constantan) {
+                        Fluid constantanFluid = FluidRegistry.getFluid(("constantan"));
+                        constantan.setFluid(constantanFluid);
+                        constantan.setRepresentativeItem("ingotConstantan");
+                        constantan.addCommonItems("Constantan");
+                        constantan.addTrait(TinkerTraits.crumbling);
+                        constantan.addTrait(TinkerTraits.jagged, MaterialTypes.HEAD);
+                        constantan.addTrait(TinkerTraits.crumbling, MaterialTypes.EXTRA);
+                        constantan.setCastable(true).setCraftable(false);
+                        TinkerRegistry.addMaterialStats(constantan,
+                                new HeadMaterialStats(800, 8.2f, 8, HarvestLevels.DIAMOND),
+                                new HandleMaterialStats(0.9f, 300),
+                                new ExtraMaterialStats(300));
+                        TinkerRegistry.addMaterialStats(constantan, new BowMaterialStats(0.70f, 4.9f, 4.2f), new ArrowShaftMaterialStats(1, 2));
+                        TinkerRegistry.integrate(constantan, constantanFluid).toolforge().preInit();
+                    }
+                }
+                if(Config.tungsten) {
+                    Fluid tungstenFluid = FluidRegistry.getFluid(("tungsten"));
+                    tungsten.setFluid(tungstenFluid);
+                    tungsten.setRepresentativeItem("ingotTungsten");
+                    tungsten.addCommonItems("Tungsten");
+                    tungsten.addTrait(TinkerTraits.heavy);
+                    tungsten.addTrait(TinkerTraits.duritos, MaterialTypes.HEAD);
+                    tungsten.addTrait(TraitsHelper.brittle, MaterialTypes.EXTRA);
+                    tungsten.setCastable(true).setCraftable(false);
+                    TinkerRegistry.addMaterialStats(tungsten,
+                            new HeadMaterialStats(500, 6.2f, 7, HarvestLevels.IRON),
+                            new HandleMaterialStats(0.4f, 330),
+                            new ExtraMaterialStats(190));
+                    TinkerRegistry.addMaterialStats(tungsten, new BowMaterialStats(0.60f, 3.9f, 6.2f), new ArrowShaftMaterialStats(1.2f, 2));
+                    TinkerRegistry.integrate(tungsten, tungstenFluid).toolforge().preInit();
+                }
+
+                if(Config.tungstenSteel) {
+                    Fluid tungstenSteelFluid = FluidRegistry.getFluid(("tungsten_steel"));
+                    tungstenSteel.setFluid(tungstenSteelFluid);
+                    tungstenSteel.setRepresentativeItem("ingotTungstenSteel");
+                    tungstenSteel.addCommonItems("TungstenSteel");
+                    tungstenSteel.addTrait(TinkerTraits.heavy);
+                    tungstenSteel.addTrait(TinkerTraits.sharp, MaterialTypes.HEAD);
+                    tungstenSteel.addTrait(TinkerTraits.stiff, MaterialTypes.HANDLE);
+                    tungstenSteel.setCastable(true).setCraftable(false);
+                    TinkerRegistry.addMaterialStats(tungstenSteel,
+                            new HeadMaterialStats(500, 7.2f, 7, HarvestLevels.DIAMOND),
+                            new HandleMaterialStats(0.4f, 330),
+                            new ExtraMaterialStats(190));
+                    TinkerRegistry.addMaterialStats(tungstenSteel, new BowMaterialStats(0.60f, 3.9f, 6.2f), new ArrowShaftMaterialStats(1.2f, 2));
+                    TinkerRegistry.integrate(tungstenSteel, tungstenSteelFluid).toolforge().preInit();
+                }
+
+                if(Config.titanium) {
+                    Fluid titaniumFluid = FluidRegistry.getFluid(("titanium"));
+                    titanium.setFluid(titaniumFluid);
+                    titanium.setRepresentativeItem("ingotTitanium");
+                    titanium.addCommonItems("Titanium");
+                    titanium.addTrait(TinkerTraits.lightweight);
+                    titanium.addTrait(TinkerTraits.sharp, MaterialTypes.HEAD);
+                    titanium.addTrait(TinkerTraits.momentum, MaterialTypes.HANDLE);
+                    titanium.setCastable(true).setCraftable(false);
+                    TinkerRegistry.addMaterialStats(titanium,
+                            new HeadMaterialStats(100, 6.1f, 8.1f, HarvestLevels.IRON),
+                            new HandleMaterialStats(0.9f, 100),
+                            new ExtraMaterialStats(100));
+                    TinkerRegistry.addMaterialStats(titanium, new BowMaterialStats(0.60f, 5.0f, 8.2f), new ArrowShaftMaterialStats(1, 2));
+                    TinkerRegistry.integrate(titanium, titaniumFluid).toolforge().preInit();
+                }
+
+                if(Config.aluminum) {
+                    Fluid aluminumFluid = FluidRegistry.getFluid(("aluminum"));
+                    aluminum.setFluid(aluminumFluid);
+                    aluminum.setRepresentativeItem("ingotAluminum");
+                    aluminum.addCommonItems("Aluminum");
+                    aluminum.addTrait(TinkerTraits.duritos);
+                    aluminum.addTrait(TinkerTraits.jagged, MaterialTypes.HEAD);
+                    aluminum.addTrait(TinkerTraits.momentum, MaterialTypes.HANDLE);
+                    aluminum.setCastable(true).setCraftable(false);
+                    TinkerRegistry.addMaterialStats(aluminum,
+                            new HeadMaterialStats(320, 7.1f, 6.1f, HarvestLevels.IRON),
+                            new HandleMaterialStats(0.9f, 200),
+                            new ExtraMaterialStats(130));
+                    TinkerRegistry.addMaterialStats(aluminum, new BowMaterialStats(0.60f, 5.0f, 4.2f), new ArrowShaftMaterialStats(1, 2));
+                    TinkerRegistry.integrate(aluminum, aluminumFluid).toolforge().preInit();
+                }
+
+                if(Config.antimony) {
+                    Fluid antimonyFluid = FluidRegistry.getFluid(("antimony"));
+                    antimony.setFluid(antimonyFluid);
+                    antimony.setRepresentativeItem("ingotAntimony");
+                    antimony.addCommonItems("Antimony");
+                    antimony.addTrait(TinkerTraits.depthdigger);
+                    antimony.addTrait(TinkerTraits.jagged, MaterialTypes.HEAD);
+                    antimony.addTrait(TinkerTraits.momentum, MaterialTypes.HANDLE);
+                    antimony.setCastable(true).setCraftable(false);
+                    TinkerRegistry.addMaterialStats(antimony,
+                            new HeadMaterialStats(220, 7, 5.9f, HarvestLevels.IRON),
+                            new HandleMaterialStats(0.7f, 400),
+                            new ExtraMaterialStats(230));
+                    TinkerRegistry.addMaterialStats(antimony, new BowMaterialStats(0.60f, 5.0f, 5.2f), new ArrowShaftMaterialStats(1, 2));
+                    TinkerRegistry.integrate(antimony, antimonyFluid).toolforge().preInit();
+                }
+
+                if(Config.osmium) {
+                    Fluid osmiumFluid = FluidRegistry.getFluid(("osmium"));
+                    osmium.setFluid(osmiumFluid);
+                    osmium.setRepresentativeItem("ingotOsmium");
+                    osmium.addCommonItems("Osmium");
+                    osmium.addTrait(TinkerTraits.dense);
+                    osmium.addTrait(TinkerTraits.established, MaterialTypes.HEAD);
+                    osmium.addTrait(TinkerTraits.dense, MaterialTypes.HANDLE);
+                    osmium.setCastable(true).setCraftable(false);
+                    TinkerRegistry.addMaterialStats(osmium,
+                            new HeadMaterialStats(440, 6, 6.3f, HarvestLevels.IRON),
+                            new HandleMaterialStats(1f, 330),
+                            new ExtraMaterialStats(220));
+                    TinkerRegistry.addMaterialStats(osmium, new BowMaterialStats(0.60f, 3.0f, 6.2f), new ArrowShaftMaterialStats(1, 2));
+                    TinkerRegistry.integrate(osmium, osmiumFluid).toolforge().preInit();
+                }
+
+                if(Config.invar) {
+                    Fluid invarFluid = FluidRegistry.getFluid(("invar"));
+                    invar.setFluid(invarFluid);
+                    invar.setRepresentativeItem("ingotInvar");
+                    invar.addCommonItems("Invar");
+                    invar.addTrait(TinkerTraits.crumbling);
+                    invar.addTrait(TinkerTraits.established, MaterialTypes.HEAD);
+                    invar.addTrait(TinkerTraits.crumbling, MaterialTypes.HANDLE);
+                    invar.setCastable(true).setCraftable(false);
+                    TinkerRegistry.addMaterialStats(invar,
+                            new HeadMaterialStats(640, 7.2f, 7.5f, HarvestLevels.IRON),
+                            new HandleMaterialStats(1.1f, 330),
+                            new ExtraMaterialStats(330));
+                    TinkerRegistry.addMaterialStats(invar, new BowMaterialStats(1.1f, 2.0f, 5.2f), new ArrowShaftMaterialStats(1, 2));
+                    TinkerRegistry.integrate(invar, invarFluid).toolforge().preInit();
                 }
             }
         }
@@ -346,12 +467,15 @@ public class TConstructHelper {
         Fluid steelFluid = FluidRegistry.getFluid(("steel"));
         Fluid nickelFluid = FluidRegistry.getFluid(("nickel"));
         Fluid constantanFluid = FluidRegistry.getFluid(("constantan"));
+        Fluid osmiumFluid = FluidRegistry.getFluid(("osmium"));
+        Fluid titaniumFluid = FluidRegistry.getFluid(("titanium"));
+        Fluid aluminumFluid = FluidRegistry.getFluid(("aluminum"));
+        Fluid mithrilFluid = FluidRegistry.getFluid(("mithril"));
+        Fluid invarFluid = FluidRegistry.getFluid(("invar"));
+        Fluid antimonyFluid = FluidRegistry.getFluid(("antimony"));
 
         for (int i = 0; i<OredictNames.length; i++) {
-            TinkerSmeltery.registerOredictMeltingCasting(Fluids[i], OredictNames[i]);
-            TinkerRegistry.registerMelting("ingotDouble" + OredictNames[i], Fluids[i], TMaterial.VALUE_DOUBLE_INGOT);
-            TinkerRegistry.registerMelting("sheet" + OredictNames[i], Fluids[i], TMaterial.VALUE_SHEET);
-            TinkerRegistry.registerMelting("sheetDouble" + OredictNames[i], Fluids[i], TMaterial.VALUE_DOUBLE_SHEET);
+            this.registeryMelting(Fluids[i], OredictNames[i]);
         }
         // addition
         blackSteel.setFluid(blackSteelFluid);
@@ -375,22 +499,58 @@ public class TConstructHelper {
         platinum.setFluid(platinumFluid);
         platinum.setCraftable(false).setCastable(true);
         if(metallum) {
+            // constantan
             constantan.setFluid(constantanFluid);
             constantan.setCraftable(false).setCastable(true);
             constantanFluid.setTemperature(750);
-            TinkerSmeltery.registerOredictMeltingCasting(constantanFluid, "Constantan");
-            TinkerRegistry.registerMelting("ingotDouble" + "Constantan", constantanFluid, TMaterial.VALUE_DOUBLE_INGOT);
-            TinkerRegistry.registerMelting("sheet" + "Constantan", constantanFluid, TMaterial.VALUE_SHEET);
-            TinkerRegistry.registerMelting("sheetDouble" + "Constantan", constantanFluid, TMaterial.VALUE_DOUBLE_SHEET);
+            this.registeryMelting(constantanFluid, "Constantan");
+            // tungten
+            tungsten.setFluid(tungstenFluid);
+            tungsten.setCraftable(false).setCastable(true);
+            this.registeryMelting(tungstenFluid, "Tungsten");
+
+            // tungsten steel
+            tungstenSteel.setFluid(tungstenSteelFluid);
+            tungstenSteel.setCraftable(false).setCastable(true);
+            this.registeryMelting(tungstenSteelFluid, "TungstenSteel");
+
+            // osmium
+            osmium.setFluid(osmiumFluid);
+            tungstenSteel.setCraftable(false).setCastable(true);
+            this.registeryMelting(osmiumFluid, "Osmium");
+
+            // titanium
+            titanium.setFluid(titaniumFluid);
+            titanium.setCraftable(false).setCastable(true);
+            this.registeryMelting(titaniumFluid, "Titanium");
+
+            // aluminum
+            aluminum.setFluid(aluminumFluid);
+            aluminum.setCraftable(false).setCastable(true);
+            this.registeryMelting(aluminumFluid, "Aluminum");
+
+            // antimony
+            antimony.setFluid(antimonyFluid);
+            antimony.setCraftable(false).setCastable(true);
+            this.registeryMelting(antimonyFluid, "Antimony");
+
+            // mithril
+            mithril.setFluid(mithrilFluid);
+            mithril.setCraftable(false).setCastable(true);
+            this.registeryMelting(mithrilFluid, "Mithril");
+
+            // invar
+            invar.setFluid(invarFluid);
+            invar.setCraftable(false).setCastable(true);
+            this.registeryMelting(invarFluid, "Invar");
         }
 
-        TinkerSmeltery.registerOredictMeltingCasting(blueWeakSteelFluid.setTemperature(1085), "WeakBlueSteel");
-        TinkerSmeltery.registerOredictMeltingCasting(redWeakSteelFluid.setTemperature(1085), "WeakRedSteel");
-        TinkerSmeltery.registerOredictMeltingCasting(weakSteelFluid.setTemperature(1085), "WeakSteel");
+        TinkerSmeltery.registerOredictMeltingCasting(blueWeakSteelFluid.setTemperature(1000), "WeakBlueSteel");
+        TinkerSmeltery.registerOredictMeltingCasting(redWeakSteelFluid.setTemperature(1000), "WeakRedSteel");
+        TinkerSmeltery.registerOredictMeltingCasting(weakSteelFluid.setTemperature(1000), "WeakSteel");
 
         // register hot_water as a smeltery fluid
-        Fluid hot_water = FluidRegistry.getFluid("hot_water");
-        TinkerRegistry.registerSmelteryFuel(new FluidStack(hot_water.setTemperature(350), 1000),600);
+        TinkerRegistry.registerSmelteryFuel(new FluidStack(FluidsTFC.HOT_WATER.get(), 1000),600);
         // register Alloy
         if(Config.register_alloy) {
             // sterling silver
@@ -423,5 +583,21 @@ public class TConstructHelper {
         platinum.setRenderInfo(0x9DADC0);
         nickel.setRenderInfo(0x4E4E3C);
         zinc.setRenderInfo(0xE1E4E1);
+        constantan.setRenderInfo(0xD28874);
+        tungsten.setRenderInfo(0x41454B);
+        tungstenSteel.setRenderInfo(0x565F6E);
+        osmium.setRenderInfo(0xB9D2DD);
+        titanium.setRenderInfo(0xD9FBFC);
+        aluminum.setRenderInfo(0xD9FBFC);
+        antimony.setRenderInfo(0xE7E7F5);
+        mithril.setRenderInfo(0x8ADAF6);
+        invar.setRenderInfo(0xC0C0B3);
+    }
+    public void registeryMelting(Fluid f, String ore) {
+
+        TinkerSmeltery.registerOredictMeltingCasting(f, ore);
+        TinkerRegistry.registerMelting("ingotDouble" + ore, f, TMaterial.VALUE_DOUBLE_INGOT);
+        TinkerRegistry.registerMelting("sheet" + ore, f, TMaterial.VALUE_SHEET);
+        TinkerRegistry.registerMelting("sheetDouble" + ore, f, TMaterial.VALUE_DOUBLE_SHEET);
     }
 }

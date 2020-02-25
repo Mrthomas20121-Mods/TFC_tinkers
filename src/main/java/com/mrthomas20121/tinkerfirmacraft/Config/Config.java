@@ -22,6 +22,14 @@ public class Config {
     public static boolean bismuth = true;
     public static boolean platinum = true;
     public static boolean zinc = true;
+    public static boolean constantan = true;
+    public static boolean tungsten = true;
+    public static boolean tungstenSteel = true;
+    public static boolean osmium = true;
+    public static boolean antimony = true;
+    public static boolean aluminum = true;
+    public static boolean titanium = true;
+    public static boolean invar = true;
 
     // Call this from CommonProxy.preInit(). It will create our config if it doesn't
     // exist yet and read the values if it does exist.
@@ -54,6 +62,15 @@ public class Config {
         bismuth = cfg.getBoolean("bismuth", CATEGORY_METERIALS, bismuth, "Set to false to disable bismuth");
         platinum = cfg.getBoolean("platinum", CATEGORY_METERIALS, platinum, "Set to false to disable platinum");
         zinc = cfg.getBoolean("zinc", CATEGORY_METERIALS, zinc, "Set to false to disable zinc");
+        constantan = cfg.getBoolean("constantan", CATEGORY_METERIALS, constantan, "Set to false to disable constantan");
+        tungsten = cfg.getBoolean("tungsten", CATEGORY_METERIALS, tungsten, "Set to false to disable tungsten");
+        tungstenSteel = cfg.getBoolean("tungsten_steel", CATEGORY_METERIALS, tungstenSteel, "Set to false to disable tungsten_steel");
+        titanium = cfg.getBoolean("titanium", CATEGORY_METERIALS, titanium, "Set to false to disable titanium");
+        aluminum = cfg.getBoolean("aluminum", CATEGORY_METERIALS, aluminum, "Set to false to disable aluminum");
+        antimony = cfg.getBoolean("antimony", CATEGORY_METERIALS, antimony, "Set to false to disable antimony");
+        osmium = cfg.getBoolean("osmium", CATEGORY_METERIALS, osmium, "Set to false to disable osmium");
+        invar = cfg.getBoolean("invar", CATEGORY_METERIALS, invar, "Set to false to disable invar");
+
     }
     private static void initGeneralConfig(Configuration cfg) {
         cfg.addCustomCategoryComment(CATEGORY_GENERAL, "General Stuff");
