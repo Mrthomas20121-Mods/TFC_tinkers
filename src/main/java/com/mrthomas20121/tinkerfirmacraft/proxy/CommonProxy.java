@@ -1,6 +1,7 @@
 package com.mrthomas20121.tinkerfirmacraft.proxy;
 
 import com.mrthomas20121.tinkerfirmacraft.Config.Config;
+import com.mrthomas20121.tinkerfirmacraft.ToolPart.Parts;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;

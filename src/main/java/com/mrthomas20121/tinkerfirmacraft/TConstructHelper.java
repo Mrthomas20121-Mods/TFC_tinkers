@@ -20,6 +20,7 @@ import slimeknights.tconstruct.library.client.MaterialRenderInfo;
 import slimeknights.tconstruct.library.materials.*;
 import slimeknights.tconstruct.library.utils.HarvestLevels;
 import slimeknights.tconstruct.smeltery.TinkerSmeltery;
+import slimeknights.tconstruct.tools.TinkerMaterials;
 import slimeknights.tconstruct.tools.TinkerTraits;
 import com.mrthomas20121.tinkerfirmacraft.Config.Config;
 import com.mrthomas20121.tinkerfirmacraft.Traits.TraitsHelper;
@@ -50,7 +51,7 @@ public class TConstructHelper {
 
     // tfc metallum Materials
     public static final Material tungsten = new Material("tungsten", 0x41454B);
-    public static final Material tungstenSteel = new Material("tungstensteel", 0x565F6E);
+    public static final Material tungstenSteel = new Material("tungsten_steel", 0x565F6E);
     public static final Material osmium = new Material("osmium", 0xB9D2DD);
     public static final Material titanium = new Material("titanium", 0xC2C4CC);
     public static final Material aluminum = new Material("aluminum", 0xD9FBFC);
@@ -61,6 +62,7 @@ public class TConstructHelper {
     public static final Material mithril = new Material("mithril", 0x8ADAF6);
     public static final Material invar = new Material("invar", 0xC0C0B3);
     public static final boolean metallum = Loader.isModLoaded("tfcmetallum");
+    public static final boolean tech = Loader.isModLoaded("tfctech");
 
     public String[] OredictNames = {"Bismuth", "BismuthBronze", "BlackBronze", "SterlingSilver", "RoseGold", "WroughtIron", "Platinum", "BlackSteel", "RedSteel", "BlueSteel"};
     public void preInit()
@@ -368,10 +370,10 @@ public class TConstructHelper {
                 }
 
                 if(Config.aluminum) {
-                    Fluid aluminumFluid = FluidRegistry.getFluid(("aluminum"));
+                    Fluid aluminumFluid = FluidRegistry.getFluid(("aluminium"));
                     aluminum.setFluid(aluminumFluid);
-                    aluminum.setRepresentativeItem("ingotAluminum");
-                    aluminum.addCommonItems("Aluminum");
+                    aluminum.setRepresentativeItem("ingotAluminium");
+                    aluminum.addCommonItems("Aluminium");
                     aluminum.addTrait(TinkerTraits.duritos);
                     aluminum.addTrait(TinkerTraits.jagged, MaterialTypes.HEAD);
                     aluminum.addTrait(TinkerTraits.momentum, MaterialTypes.HANDLE);
@@ -475,7 +477,7 @@ public class TConstructHelper {
         Fluid antimonyFluid = FluidRegistry.getFluid(("antimony"));
 
         for (int i = 0; i<OredictNames.length; i++) {
-            this.registeryMelting(Fluids[i], OredictNames[i]);
+            this.registerMelting(Fluids[i], OredictNames[i]);
         }
         // addition
         blackSteel.setFluid(blackSteelFluid);
@@ -503,46 +505,52 @@ public class TConstructHelper {
             constantan.setFluid(constantanFluid);
             constantan.setCraftable(false).setCastable(true);
             constantanFluid.setTemperature(750);
-            this.registeryMelting(constantanFluid, "Constantan");
+            this.registerMelting(constantanFluid, "Constantan");
             // tungten
             tungsten.setFluid(tungstenFluid);
             tungsten.setCraftable(false).setCastable(true);
-            this.registeryMelting(tungstenFluid, "Tungsten");
+            tungstenFluid.setTemperature(500);
+            this.registerMelting(tungstenFluid, "Tungsten");
 
             // tungsten steel
             tungstenSteel.setFluid(tungstenSteelFluid);
             tungstenSteel.setCraftable(false).setCastable(true);
-            this.registeryMelting(tungstenSteelFluid, "TungstenSteel");
+            tungstenSteelFluid.setTemperature(500);
+            this.registerMelting(tungstenSteelFluid, "TungstenSteel");
 
             // osmium
             osmium.setFluid(osmiumFluid);
             tungstenSteel.setCraftable(false).setCastable(true);
-            this.registeryMelting(osmiumFluid, "Osmium");
+            this.registerMelting(osmiumFluid, "Osmium");
 
             // titanium
             titanium.setFluid(titaniumFluid);
             titanium.setCraftable(false).setCastable(true);
-            this.registeryMelting(titaniumFluid, "Titanium");
+            titaniumFluid.setTemperature(400);
+            this.registerMelting(titaniumFluid, "Titanium");
 
             // aluminum
             aluminum.setFluid(aluminumFluid);
             aluminum.setCraftable(false).setCastable(true);
-            this.registeryMelting(aluminumFluid, "Aluminum");
+            this.registerMelting(aluminumFluid, "Aluminum");
 
             // antimony
             antimony.setFluid(antimonyFluid);
             antimony.setCraftable(false).setCastable(true);
-            this.registeryMelting(antimonyFluid, "Antimony");
+            antimonyFluid.setTemperature(350);
+            this.registerMelting(antimonyFluid, "Antimony");
 
             // mithril
             mithril.setFluid(mithrilFluid);
             mithril.setCraftable(false).setCastable(true);
-            this.registeryMelting(mithrilFluid, "Mithril");
+            mithrilFluid.setTemperature(430);
+            this.registerMelting(mithrilFluid, "Mithril");
 
             // invar
             invar.setFluid(invarFluid);
             invar.setCraftable(false).setCastable(true);
-            this.registeryMelting(invarFluid, "Invar");
+            invarFluid.setTemperature(600);
+            this.registerMelting(invarFluid, "Invar");
         }
 
         TinkerSmeltery.registerOredictMeltingCasting(blueWeakSteelFluid.setTemperature(1000), "WeakBlueSteel");
@@ -593,11 +601,37 @@ public class TConstructHelper {
         mithril.setRenderInfo(0x8ADAF6);
         invar.setRenderInfo(0xC0C0B3);
     }
-    public void registeryMelting(Fluid f, String ore) {
+    public void registerMelting(Fluid f, String ore) {
 
         TinkerSmeltery.registerOredictMeltingCasting(f, ore);
         TinkerRegistry.registerMelting("ingotDouble" + ore, f, TMaterial.VALUE_DOUBLE_INGOT);
         TinkerRegistry.registerMelting("sheet" + ore, f, TMaterial.VALUE_SHEET);
         TinkerRegistry.registerMelting("sheetDouble" + ore, f, TMaterial.VALUE_DOUBLE_SHEET);
+        if(tech) {
+            TinkerRegistry.registerMelting("rackwheel" + ore, f, Material.VALUE_BrickBlock);
+            TinkerRegistry.registerMelting("longRod" + ore, f, Material.VALUE_Ingot);
+            TinkerRegistry.registerMelting("rod" + ore, f, Material.VALUE_SearedMaterial);
+            TinkerRegistry.registerMelting("wire" + ore, f, Material.VALUE_SearedMaterial);
+            TinkerRegistry.registerMelting("strip" + ore, f, Material.VALUE_SearedMaterial);
+            TinkerRegistry.registerMelting("bolt" + ore, f, Material.VALUE_Fragment);
+            TinkerRegistry.registerMelting("bolt" + ore, f, Material.VALUE_Fragment);
+            TinkerRegistry.registerMelting("screw" + ore, f, Material.VALUE_Fragment);
+            if(ore.equals("Tin") || ore.equals("Brass") || ore.equals("Steel")) {
+                TinkerRegistry.registerMelting("sleeve" + ore, f, Material.VALUE_Ingot);
+            }
+            if(ore.equals("WroughtIron") || ore.equals("Steel") || ore.equals("BlackSteel")) {
+                TinkerRegistry.registerMelting("drawPlate" + ore, f, Material.VALUE_Ingot);
+                if(ore.equals("WroughtIron")) {
+                    TinkerRegistry.registerMelting("tongs" + ore, f, Material.VALUE_Ingot);
+                    TinkerRegistry.registerMelting("bowlMount" + ore, f, Material.VALUE_Ingot);
+                    TinkerRegistry.registerMelting("groove" + ore, f, Material.VALUE_SearedMaterial);
+
+                }
+            }
+            if(ore.equals("Copper")) {
+                TinkerRegistry.registerMelting("inductor" + ore, f, Material.VALUE_SearedBlock);
+            }
+        }
+
     }
 }
