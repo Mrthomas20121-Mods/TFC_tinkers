@@ -18,8 +18,9 @@ material.tungsten.name=Tungsten
 material.tungsten_steel.name=Tungsten Steel
 material.titanium.name=Titanium
 material.osmium.name=Osmium
-material.aluminum.name=Aluminum
+material.aluminum.name=Aluminium
 material.antimony.name=Antimony
+material.invar.name=Invar
 
 # harvest levels
 harvestlevel.redsteel = %1Red Steel
