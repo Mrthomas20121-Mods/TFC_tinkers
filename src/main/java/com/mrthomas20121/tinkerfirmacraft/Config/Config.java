@@ -30,6 +30,7 @@ public class Config {
     public static boolean aluminum = true;
     public static boolean titanium = true;
     public static boolean invar = true;
+    public static boolean tfctech = true;
 
     // Call this from CommonProxy.preInit(). It will create our config if it doesn't
     // exist yet and read the values if it does exist.
@@ -70,7 +71,7 @@ public class Config {
         antimony = cfg.getBoolean("antimony", CATEGORY_METERIALS, antimony, "Set to false to disable antimony");
         osmium = cfg.getBoolean("osmium", CATEGORY_METERIALS, osmium, "Set to false to disable osmium");
         invar = cfg.getBoolean("invar", CATEGORY_METERIALS, invar, "Set to false to disable invar");
-
+        tfctech = cfg.getBoolean("tfc_tech_integration", CATEGORY_METERIALS, invar, "Set to false to disable tfctech integration");
     }
     private static void initGeneralConfig(Configuration cfg) {
         cfg.addCustomCategoryComment(CATEGORY_GENERAL, "General Stuff");
