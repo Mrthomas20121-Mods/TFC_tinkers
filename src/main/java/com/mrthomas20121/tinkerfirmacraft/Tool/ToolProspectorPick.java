@@ -7,9 +7,12 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import com.mrthomas20121.tinkerfirmacraft.ToolPart.Parts;
 import net.minecraft.nbt.NBTTagCompound;
+import slimeknights.tconstruct.library.materials.HandleMaterialStats;
+import slimeknights.tconstruct.library.materials.HeadMaterialStats;
+import slimeknights.tconstruct.library.materials.MaterialTypes;
 import slimeknights.tconstruct.library.tinkering.PartMaterialType;
 import slimeknights.tconstruct.library.tinkering.TinkersItem;
-import slimeknights.tconstruct.library.tools.ToolCore;
+import slimeknights.tconstruct.library.tools.AoeToolCore;
 import slimeknights.tconstruct.library.materials.Material;
 import slimeknights.tconstruct.library.tools.ToolNBT;
 
@@ -26,38 +29,52 @@ import net.minecraft.world.World;
 import net.dries007.tfc.ConfigTFC;
 import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.api.capability.player.CapabilityPlayerData;
-import net.dries007.tfc.api.types.Metal;
 import net.dries007.tfc.api.types.Ore;
 import net.dries007.tfc.util.skills.ProspectingSkill;
 import net.dries007.tfc.util.skills.SkillType;
 import net.dries007.tfc.world.classic.worldgen.vein.VeinRegistry;
 import net.dries007.tfc.world.classic.worldgen.vein.VeinType;
-import net.dries007.tfc.objects.items.metal.ItemProspectorPick;
 import slimeknights.tconstruct.tools.TinkerTools;
 
-public class ToolProspectingPick extends ToolCore {
+public class ToolProspectorPick extends AoeToolCore {
     private static final int COOLDOWN = 10;
     private static final Random RANDOM = new Random();
     private static final int PROSPECT_RADIUS = 12;
+    public static final float DURABILITY_MODIFIER = 0.25f;
 
-    public ToolProspectingPick() {
+    public ToolProspectorPick() {
         super(PartMaterialType.head(Parts.proPick),
                 PartMaterialType.handle(TinkerTools.toolRod));
     }
 
     @Override
-    public NBTTagCompound buildTag(List<Material> materials) {
-        return null;
+    public ToolNBT buildTagData(List<Material> materials) {
+        HandleMaterialStats handle = materials.get(0).getStatsOrUnknown(MaterialTypes.HANDLE);
+        HeadMaterialStats head = materials.get(1).getStatsOrUnknown(MaterialTypes.HEAD);
+
+        ToolNBT data = new ToolNBT();
+        data.head(head);
+        data.handle(handle);
+
+        data.harvestLevel = head.harvestLevel;
+        data.durability *= DURABILITY_MODIFIER;
+
+        return data;
     }
 
     @Override
     public float damagePotential() {
-        return 0.4f;
+        return 0.3f;
     }
     @Override
     public double attackSpeed() {
         return 0.9F;
     }
+    @Override
+    public float getRepairModifierForPart(int index) {
+        return DURABILITY_MODIFIER;
+    }
+
     @Override
     @Nonnull
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, @Nullable EnumFacing facing, float hitX, float hitY, float hitZ)
