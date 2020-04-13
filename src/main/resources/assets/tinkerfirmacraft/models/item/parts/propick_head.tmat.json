@@ -1,0 +1,10 @@
+{
+    "parent": "builtin/generated",
+    "textures": {
+        "layer0": "tinkerfirmacraft:items/propick/head"
+    },
+    "offset": {
+        "x": -1,
+        "y": 2
+    }
+}

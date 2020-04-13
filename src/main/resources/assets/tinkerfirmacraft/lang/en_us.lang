@@ -32,3 +32,14 @@ modifier.brittle.desc=§oIt's meant to be broken!§r\nThe Tools is slowing losin
 
 modifier.ferromagnetism.name=Ferromagnetism
 modifier.ferromagnetism.desc=§oIt's Magical§r\nBreaking Iron seems to give strange power
+
+# items
+
+# prospector pickaxe
+item.tinkerfirmacraft.prospector_pick.name=Prospector Pickaxe
+item.tinkerfirmacraft.prospector_pick.desc = A tool used to find ore vein.
+
+# prospector pickaxe head
+item.tinkerfirmacraft.propick_head.name=Prospector Pickaxe Head
+
+itemGroup.tinkerfirmacraft_tools  = Tinkerfirmacraft Tools
