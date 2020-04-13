@@ -1,7 +1,7 @@
-package com.mrthomas20121.tinkerfirmacraft.proxy;
+package com.mrthomas20121.tfc_tinker.proxy;
 
-import com.mrthomas20121.tinkerfirmacraft.Config.Config;
-import com.mrthomas20121.tinkerfirmacraft.ToolPart.Parts;
+import com.mrthomas20121.tfc_tinker.Config.Config;
+import com.mrthomas20121.tfc_tinker.ToolPart.Parts;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.RegistryEvent;
@@ -15,7 +15,7 @@ import slimeknights.tconstruct.library.tools.ToolCore;
 
 import java.io.File;
 
-import static com.mrthomas20121.tinkerfirmacraft.TinkerFirmaCraft.logger;
+import static com.mrthomas20121.tfc_tinker.TFC_Tinker.logger;
 import static slimeknights.tconstruct.library.utils.HarvestLevels.harvestLevelNames;
 
 @Mod.EventBusSubscriber
