@@ -39,9 +39,9 @@ repositories {
     }
 }
 
-version = "1.2.1"
-group= "mrthomas20121.tinkerfirmacraft"
-archivesBaseName = "tinkerfirmacraft"
+version = "1.2.6"
+group= "mrthomas20121.tfc_tinker"
+archivesBaseName = "tfc_tinkers"
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
