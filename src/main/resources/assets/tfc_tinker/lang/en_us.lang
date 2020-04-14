@@ -18,9 +18,11 @@ material.tungsten.name=Tungsten
 material.tungsten_steel.name=Tungsten Steel
 material.titanium.name=Titanium
 material.osmium.name=Osmium
-material.aluminum.name=Aluminium
+material.aluminium.name=Aluminium
 material.antimony.name=Antimony
 material.invar.name=Invar
+material.nickel_silver.name=Nickel Silver
+material.red_alloy.name=Red Alloy
 
 # harvest levels
 harvestlevel.redsteel = %1Red Steel
@@ -36,10 +38,8 @@ modifier.ferromagnetism.desc=§oIt's Magical§r\nBreaking Iron seems to give str
 # items
 
 # prospector pickaxe
-item.tinkerfirmacraft.prospector_pick.name=Prospector Pickaxe
-item.tinkerfirmacraft.prospector_pick.desc = A tool used to find ore vein.
+item.tfc_tinker.prospector_pick.name=Prospector Pickaxe
+item.tfc_tinker.prospector_pick.desc = A tool used to find ore vein.
 
 # prospector pickaxe head
-item.tinkerfirmacraft.propick_head.name=Prospector Pickaxe Head
-
-itemGroup.tinkerfirmacraft_tools  = Tinkerfirmacraft Tools
+item.tfc_tinker.propick_head.name=Prospector Pickaxe Head
