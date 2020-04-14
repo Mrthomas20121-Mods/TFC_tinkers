@@ -43,15 +43,15 @@ public class TConstructHelper {
     public static final Material tungstenSteel = new Material("tungsten_steel", 0x565F6E);
     public static final Material osmium = new Material("osmium", 0xB9D2DD);
     public static final Material titanium = new Material("titanium", 0xC2C4CC);
-    public static final Material aluminum = new Material("aluminum", 0xD9FBFC);
+    public static final Material aluminum = new Material("aluminium", 0xD9FBFC);
     public static final Material antimony = new Material("antimony", 0xE7E7F5);
     public static final Material constantan = new Material("constantan", 0xD28874);
     // Electrum not supported as it added by Tinker construct
     // public static final Material electrum = new Material("electrum", 0xDFB950);
     public static final Material mithril = new Material("mithril", 0x8ADAF6);
     public static final Material invar = new Material("invar", 0xC0C0B3);
-    public static final Material nickel_silver = new Material("nickel_silver", 0xC0C0B3);
-    public static final Material red_alloy = new Material("red_alloy", 0xC0C0B3);
+    public static final Material nickel_silver = new Material("nickel_silver", 0xD6D4D4);
+    public static final Material red_alloy = new Material("red_alloy", 0xFFA3A3);
     public static final boolean metallum = Loader.isModLoaded("tfcmetallum");
     public static final boolean tech = Loader.isModLoaded("tfctech");
 
@@ -430,19 +430,36 @@ public class TConstructHelper {
 
             if(Config.red_alloy) {
                 Fluid red_alloyFluid = FluidRegistry.getFluid(("red_alloy"));
-                invar.setFluid(red_alloyFluid);
-                invar.setRepresentativeItem("ingotRedAlloy");
-                invar.addCommonItems("RedAlloy");
-                invar.addTrait(TinkerTraits.aridiculous);
-                invar.addTrait(TinkerTraits.lightweight, MaterialTypes.HEAD);
-                invar.addTrait(TinkerTraits.autosmelt, MaterialTypes.HANDLE);
-                invar.setCastable(true).setCraftable(false);
-                TinkerRegistry.addMaterialStats(invar,
-                        new HeadMaterialStats(340, 5.2f, 5.5f, HarvestLevels.IRON),
+                red_alloy.setFluid(red_alloyFluid);
+                red_alloy.setRepresentativeItem("ingotRedAlloy");
+                red_alloy.addCommonItems("RedAlloy");
+                red_alloy.addTrait(TinkerTraits.aridiculous);
+                red_alloy.addTrait(TinkerTraits.lightweight, MaterialTypes.HEAD);
+                red_alloy.addTrait(TinkerTraits.autosmelt, MaterialTypes.HANDLE);
+                red_alloy.setCastable(true).setCraftable(false);
+                TinkerRegistry.addMaterialStats(red_alloy,
+                        new HeadMaterialStats(340, 5.9f, 2f, HarvestLevels.IRON),
                         new HandleMaterialStats(1.1f, 330),
-                        new ExtraMaterialStats(230));
-                TinkerRegistry.addMaterialStats(invar, new BowMaterialStats(0.9f, 3.0f, 3.2f), new ArrowShaftMaterialStats(1, 2));
-                TinkerRegistry.integrate(invar, red_alloyFluid).toolforge().preInit();
+                        new ExtraMaterialStats(50));
+                TinkerRegistry.addMaterialStats(red_alloy, new BowMaterialStats(0.9f, 3.0f, 3.2f), new ArrowShaftMaterialStats(1, 2));
+                TinkerRegistry.integrate(red_alloy, red_alloyFluid).toolforge().preInit();
+            }
+
+            if(Config.nickel_silver) {
+                Fluid nickelSilverFluid = FluidRegistry.getFluid(("nickel_silver"));
+                nickel_silver.setFluid(nickelSilverFluid);
+                nickel_silver.setRepresentativeItem("ingotNickelSilver");
+                nickel_silver.addCommonItems("NickelSilver");
+                nickel_silver.addTrait(TinkerTraits.holy);
+                nickel_silver.addTrait(TinkerTraits.lightweight, MaterialTypes.HEAD);
+                nickel_silver.addTrait(TinkerTraits.magnetic, MaterialTypes.HANDLE);
+                nickel_silver.setCastable(true).setCraftable(false);
+                TinkerRegistry.addMaterialStats(nickel_silver,
+                        new HeadMaterialStats(340, 4.2f, 4.5f, HarvestLevels.IRON),
+                        new HandleMaterialStats(1.1f, 130),
+                        new ExtraMaterialStats(30));
+                TinkerRegistry.addMaterialStats(nickel_silver, new BowMaterialStats(0.9f, 3.0f, 3.2f), new ArrowShaftMaterialStats(1, 2));
+                TinkerRegistry.integrate(nickel_silver, nickelSilverFluid).toolforge().preInit();
             }
         }
 
@@ -478,10 +495,12 @@ public class TConstructHelper {
         Fluid constantanFluid = FluidRegistry.getFluid(("constantan"));
         Fluid osmiumFluid = FluidRegistry.getFluid(("osmium"));
         Fluid titaniumFluid = FluidRegistry.getFluid(("titanium"));
-        Fluid aluminumFluid = FluidRegistry.getFluid(("aluminum"));
+        Fluid aluminumFluid = FluidRegistry.getFluid(("aluminium"));
         Fluid mithrilFluid = FluidRegistry.getFluid(("mithril"));
         Fluid invarFluid = FluidRegistry.getFluid(("invar"));
         Fluid antimonyFluid = FluidRegistry.getFluid(("antimony"));
+        Fluid red_alloyFluid = FluidRegistry.getFluid(("red_alloy"));
+        Fluid nickelsilverFluid = FluidRegistry.getFluid(("nickel_silver"));
 
         for (int i = 0; i<OredictNames.length; i++) {
             this.registerMelting(Fluids[i], OredictNames[i]);
@@ -507,7 +526,16 @@ public class TConstructHelper {
         roseGold.setCraftable(false).setCastable(true);
         platinum.setFluid(platinumFluid);
         platinum.setCraftable(false).setCastable(true);
+
+        if(tech) {
+            TinkerRegistry.registerMelting("sleeveTin", FluidRegistry.getFluid("tin"), Material.VALUE_Ingot);
+            TinkerRegistry.registerMelting("sleeveBrass", brassFluid, Material.VALUE_Ingot);
+            TinkerRegistry.registerMelting("sleeveSteel", steelFluid, Material.VALUE_Ingot);
+        }
+
         if(metallum) {
+
+
             // constantan
             constantan.setFluid(constantanFluid);
             constantan.setCraftable(false).setCastable(true);
@@ -539,7 +567,7 @@ public class TConstructHelper {
             // aluminum
             aluminum.setFluid(aluminumFluid);
             aluminum.setCraftable(false).setCastable(true);
-            this.registerMelting(aluminumFluid, "Aluminum");
+            this.registerMelting(aluminumFluid, "Aluminium");
 
             // antimony
             antimony.setFluid(antimonyFluid);
@@ -558,6 +586,17 @@ public class TConstructHelper {
             invar.setCraftable(false).setCastable(true);
             invarFluid.setTemperature(600);
             this.registerMelting(invarFluid, "Invar");
+
+            // red alloy
+            red_alloy.setFluid(red_alloyFluid);
+            red_alloy.setCraftable(false).setCastable(true);
+            red_alloyFluid.setTemperature(500);
+            this.registerMelting(red_alloyFluid, "RedAlloy");
+
+            nickel_silver.setFluid(nickelsilverFluid);
+            nickel_silver.setCraftable(false).setCastable(true);
+            red_alloyFluid.setTemperature(500);
+            this.registerMelting(red_alloyFluid, "NickelSilver");
         }
 
         TinkerSmeltery.registerOredictMeltingCasting(blueWeakSteelFluid.setTemperature(1000), "WeakBlueSteel");
@@ -623,16 +662,12 @@ public class TConstructHelper {
             TinkerRegistry.registerMelting("bolt" + ore, f, Material.VALUE_Fragment);
             TinkerRegistry.registerMelting("bolt" + ore, f, Material.VALUE_Fragment);
             TinkerRegistry.registerMelting("screw" + ore, f, Material.VALUE_Fragment);
-            if(ore.equals("Tin") || ore.equals("Brass") || ore.equals("Steel")) {
-                TinkerRegistry.registerMelting("sleeve" + ore, f, Material.VALUE_Ingot);
-            }
             if(ore.equals("WroughtIron") || ore.equals("Steel") || ore.equals("BlackSteel")) {
                 TinkerRegistry.registerMelting("drawPlate" + ore, f, Material.VALUE_Ingot);
                 if(ore.equals("WroughtIron")) {
                     TinkerRegistry.registerMelting("tongs" + ore, f, Material.VALUE_Ingot);
                     TinkerRegistry.registerMelting("bowlMount" + ore, f, Material.VALUE_Ingot);
                     TinkerRegistry.registerMelting("groove" + ore, f, Material.VALUE_SearedMaterial);
-
                 }
             }
             if(ore.equals("Copper")) {

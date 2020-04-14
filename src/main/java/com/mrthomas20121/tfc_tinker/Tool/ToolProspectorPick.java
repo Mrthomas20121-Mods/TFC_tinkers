@@ -47,7 +47,6 @@ public class ToolProspectorPick extends AoeToolCore {
                 PartMaterialType.head(Parts.proPickHead),
                 PartMaterialType.extra(TinkerTools.binding));
         addCategory(Category.TOOL);
-        setCreativeTab(new CreativeTab("tinkerfirmacraft_tools", new ItemStack(Blocks.BRICK_BLOCK)));
     }
 
     @Override

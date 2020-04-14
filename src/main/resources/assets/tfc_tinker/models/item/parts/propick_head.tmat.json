@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "tinkerfirmacraft:items/propick/head"
+        "layer0": "tfc_tinker:items/propick/head"
     },
     "offset": {
         "x": -1,
