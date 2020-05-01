@@ -1,5 +1,10 @@
 package com.mrthomas20121.tfc_tinker;
 
+import net.dries007.tfc.api.capability.forge.CapabilityForgeable;
+import net.dries007.tfc.api.capability.forge.ForgeableHeatableHandler;
+import net.dries007.tfc.api.capability.heat.CapabilityItemHeat;
+import net.dries007.tfc.api.capability.heat.ItemHeatHandler;
+import net.dries007.tfc.objects.inventory.ingredient.IIngredient;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.Fluid;
@@ -16,6 +21,8 @@ import com.mrthomas20121.tfc_tinker.Config.Config;
 import com.mrthomas20121.tfc_tinker.Traits.TraitsHelper;
 import net.minecraftforge.fml.common.Loader;
 import net.dries007.tfc.objects.fluids.FluidsTFC;
+
+import static slimeknights.tconstruct.shared.TinkerCommons.searedBrick;
 
 @Mod.EventBusSubscriber(modid= TFC_Tinker.MODID)
 public class TConstructHelper {
@@ -467,6 +474,8 @@ public class TConstructHelper {
 
     public void init()
 	{
+
+        CapabilityItemHeat.CUSTOM_ITEMS.put(IIngredient.of(searedBrick), () -> new ItemHeatHandler(null, 0.5f, 1000));
         Fluid[] Fluids = {FluidRegistry.getFluid(("bismuth")).setTemperature(370), FluidRegistry.getFluid(("bismuth_bronze")).setTemperature(985), FluidRegistry.getFluid(("black_bronze")).setTemperature(1070), FluidRegistry.getFluid(("sterling_silver")).setTemperature(900), FluidRegistry.getFluid(("rose_gold")).setTemperature(960), FluidRegistry.getFluid(("wrought_iron")).setTemperature(1000), FluidRegistry.getFluid(("platinum")).setTemperature(930), FluidRegistry.getFluid(("black_steel")).setTemperature(1000), FluidRegistry.getFluid(("red_steel")).setTemperature(1000), FluidRegistry.getFluid(("blue_steel")).setTemperature(1000)};
         // Fluids
         Fluid blackSteelFluid = FluidRegistry.getFluid(("black_steel"));
