@@ -1,7 +1,7 @@
 [
 {
-  "modid": "tinkerfirmacraft",
-  "name": "Tinkerfirmacraft",
+  "modid": "tfc_tinkers",
+  "name": "TFC Tinker's",
   "description": "Tinker construct support for terrafirmacraft",
   "version": "${version}",
   "mcversion": "${mcversion}",
