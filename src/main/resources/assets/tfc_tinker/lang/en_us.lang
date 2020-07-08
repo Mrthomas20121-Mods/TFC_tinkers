@@ -43,3 +43,19 @@ item.tfc_tinker.prospector_pick.desc = A tool used to find ore vein.
 
 # prospector pickaxe head
 item.tfc_tinker.propick_head.name=Prospector Pickaxe Head
+
+# casts
+item.tfc_tinker.cast.double_ingot.name=Double Ingot Cast
+item.tfc_tinker.cast.double_sheet.name=Double Sheet Cast
+item.tfc_tinker.cast.sheet.name=Sheet Cast
+item.tfc_tinker.cast.scrap.name=Scrap Cast
+item.tfc_tinker.cast.tuyere.name=Tuyere Cast
+item.tfc_tinker.cast.wire.name=Wire Cast
+item.tfc_tinker.cast.long_rod.name=Long Rod Cast
+item.tfc_tinker.cast.rackwheel.name=Rackwheel Cast
+item.tfc_tinker.cast.rackwheel_piece.name=Rackwheel Piece Cast
+item.tfc_tinker.cast.blowpipe.name=Blowpipe Cast
+
+# grout
+item.tfc_tinker.grout_ball.name=Grout Ball
+item.tfc_tinker.grout_brick.name=Grout Brick
