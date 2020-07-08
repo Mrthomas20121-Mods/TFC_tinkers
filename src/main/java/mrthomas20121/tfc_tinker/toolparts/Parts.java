@@ -1,6 +1,6 @@
-package mrthomas20121.tfc_tinker.ToolPart;
+package mrthomas20121.tfc_tinker.toolparts;
 
-import mrthomas20121.tfc_tinker.Tool.ToolProspectorPick;
+import mrthomas20121.tfc_tinker.tool.ToolProspectorPick;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.RegistryEvent;

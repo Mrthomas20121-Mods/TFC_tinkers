@@ -1,10 +1,10 @@
-package mrthomas20121.tfc_tinker.Tool;
+package mrthomas20121.tfc_tinker.tool;
 
 import java.util.*;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import mrthomas20121.tfc_tinker.ToolPart.Parts;
+import mrthomas20121.tfc_tinker.toolparts.Parts;
 import slimeknights.tconstruct.library.materials.HandleMaterialStats;
 import slimeknights.tconstruct.library.materials.HeadMaterialStats;
 import slimeknights.tconstruct.library.materials.MaterialTypes;
@@ -63,7 +63,7 @@ public class ToolProspectorPick extends AoeToolCore {
 
     @Override
     public float damagePotential() {
-        return 0.1f;
+        return 0.7f;
     }
     @Override
     public double attackSpeed() {
