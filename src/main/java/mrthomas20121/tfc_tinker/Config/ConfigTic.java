@@ -1,8 +1,8 @@
 package mrthomas20121.tfc_tinker.Config;
 
 import mrthomas20121.tfc_tinker.TFC_Tinker;
-import net.minecraftforge.common.config.Config;
 import mrthomas20121.tfc_tinker.proxy.CommonProxy;
+import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
@@ -10,29 +10,19 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.logging.log4j.Level;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Mod.EventBusSubscriber(modid = TFC_Tinker.MODID)
-public final class Config {
+public final class ConfigTic {
 
     private static final String CATEGORY_METERIALS = "materials";
-    private static final String CATEGORY_GENERAL = "general";
 
     public static boolean register_alloy = true;
-    public static boolean black_steel = true;
-    public static boolean red_steel = true;
-    public static boolean blue_steel = true;
-    public static boolean wrought_iron = true;
-    public static boolean blackBronze = true;
-    public static boolean bismuthBronze = true;
-    public static boolean constantan = true;
-    public static boolean tungsten = true;
-    public static boolean tungstenSteel = true;
-    public static boolean osmium = true;
-    public static boolean antimony = true;
-    public static boolean aluminum = true;
-    public static boolean titanium = true;
-    public static boolean invar = true;
-    public static boolean nickel_silver = true;
     public static boolean tfctech = true;
+    public static String[] materialBlacklists = {};
+    public static String[] castFluids = { "sterling_silver", "rose_gold", "brass" };
+    public static String[] metalBlacklists = { "tfc:unknown", "tfc:weak_steel", "tfc:weak_blue_steel", "tfc:weak_red_steel", "tfc:high_carbon_steel", "tfc:high_carbon_blue_steel", "tfc:high_carbon_red_steel", "tfc:high_carbon_black_steel"};
 
     @SubscribeEvent
     public static void onConfigChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event)
@@ -61,28 +51,13 @@ public final class Config {
     }
 
     private static void initMaterialConfig(Configuration cfg) {
-        cfg.addCustomCategoryComment(CATEGORY_METERIALS, "Tinker Materials");
         // cfg.getBoolean() will get the value in the config if it is already specified there. If not it will create the value.
-        black_steel = cfg.getBoolean("black_steel", CATEGORY_METERIALS, black_steel, "Set to false to disable black steel");
-        red_steel = cfg.getBoolean("red_steel", CATEGORY_METERIALS, red_steel, "Set to false to disable red steel");
-        blue_steel = cfg.getBoolean("blue_steel", CATEGORY_METERIALS, blue_steel, "Set to false to disable blue steel");
-        wrought_iron = cfg.getBoolean("wrought_iron", CATEGORY_METERIALS, wrought_iron, "Set to false to disable wrought iron");
-        blackBronze = cfg.getBoolean("black_bronze", CATEGORY_METERIALS, blackBronze, "Set to false to disable black bronze");
-        bismuthBronze = cfg.getBoolean("bismuth_bronze", CATEGORY_METERIALS, bismuthBronze, "Set to false to disable bismuth bronze");
-        constantan = cfg.getBoolean("constantan", CATEGORY_METERIALS, constantan, "Set to false to disable constantan");
-        tungsten = cfg.getBoolean("tungsten", CATEGORY_METERIALS, tungsten, "Set to false to disable tungsten");
-        tungstenSteel = cfg.getBoolean("tungsten_steel", CATEGORY_METERIALS, tungstenSteel, "Set to false to disable tungsten_steel");
-        titanium = cfg.getBoolean("titanium", CATEGORY_METERIALS, titanium, "Set to false to disable titanium");
-        aluminum = cfg.getBoolean("aluminum", CATEGORY_METERIALS, aluminum, "Set to false to disable aluminum");
-        antimony = cfg.getBoolean("antimony", CATEGORY_METERIALS, antimony, "Set to false to disable antimony");
-        osmium = cfg.getBoolean("osmium", CATEGORY_METERIALS, osmium, "Set to false to disable osmium");
-        invar = cfg.getBoolean("invar", CATEGORY_METERIALS, invar, "Set to false to disable invar");
-        nickel_silver = cfg.getBoolean("nickel_silver", CATEGORY_METERIALS, nickel_silver, "Set to false to disable Nickel Silver");
-        tfctech = cfg.getBoolean("tfc_tech_integration", CATEGORY_METERIALS, invar, "Set to false to disable tfctech integration");
+        materialBlacklists = cfg.getStringList("material_blacklist", CATEGORY_METERIALS, materialBlacklists, "Materials blacklist. blacklisted materials won't be registered.");
     }
     private static void initGeneralConfig(Configuration cfg) {
-        cfg.addCustomCategoryComment(CATEGORY_GENERAL, "General Stuff");
-
-        register_alloy = cfg.getBoolean("register_alloy", CATEGORY_GENERAL, register_alloy, "Set to false to disable alloy from generating in the tinker smeltery");
+        register_alloy = cfg.getBoolean("register_alloy", Configuration.CATEGORY_GENERAL, register_alloy, "Set to false to disable alloy from generating in the tinker smeltery");
+        castFluids = cfg.getStringList("cast_fluids", Configuration.CATEGORY_GENERAL, castFluids, "List of Fluids used to make TFC Tinker's Casts.");
+        metalBlacklists = cfg.getStringList("metal_blacklists", Configuration.CATEGORY_GENERAL, metalBlacklists, "Metal blacklist for casting and melting recipes, do not remove the default ones or it will crash.");
+        tfctech = cfg.getBoolean("tfc_tech", Configuration.CATEGORY_GENERAL, tfctech, "Set to false to disable tfctech integration");
     }
 }
