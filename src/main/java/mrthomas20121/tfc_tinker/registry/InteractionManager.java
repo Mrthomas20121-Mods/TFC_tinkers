@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javax.annotation.Nullable;
 
 import mrthomas20121.tfc_tinker.Api.Knapping.KnappingTypes;
+import mrthomas20121.tfc_tinker.Api.Types.Type;
 import mrthomas20121.tfc_tinker.Client.TFCTicGuiHandler;
 
 import net.minecraft.item.ItemStack;
@@ -29,7 +30,7 @@ public class InteractionManager {
         putBoth(stack -> OreDictionaryHelper.doesStackMatchOre(stack, "grout") && stack.getCount() >= KnappingTypes.GROUT.getAmountToConsume(), (worldIn, playerIn, handIn) -> {
             if (!worldIn.isRemote)
             {
-                TFCTicGuiHandler.openGui(worldIn, playerIn, TFCTicGuiHandler.Type.KNAPPING_GROUT);
+                TFCTicGuiHandler.openGui(worldIn, playerIn, Type.KNAPPING_GROUT);
             }
             return EnumActionResult.SUCCESS;
         });

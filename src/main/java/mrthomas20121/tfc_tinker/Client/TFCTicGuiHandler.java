@@ -1,6 +1,7 @@
 package mrthomas20121.tfc_tinker.Client;
 
 import mrthomas20121.tfc_tinker.Api.Knapping.KnappingTypes;
+import mrthomas20121.tfc_tinker.Api.Types.Type;
 import mrthomas20121.tfc_tinker.Items.ItemGrout;
 import mrthomas20121.tfc_tinker.TFC_Tinker;
 
@@ -59,20 +60,6 @@ public class TFCTicGuiHandler implements IGuiHandler {
                 return new GuiKnapping(container, player, KnappingTypes.GROUT, GROOUT_TEXTURE);
             default :
                 return null;
-        }
-    }
-
-    public enum Type
-    {
-        KNAPPING_GROUT,
-        NULL; // This is special, it is a non-null null.
-
-        private static final Type[] values = values();
-
-        @Nonnull
-        public static Type valueOf(int id)
-        {
-            return id < 0 || id >= values.length ? NULL : values[id];
         }
     }
 }

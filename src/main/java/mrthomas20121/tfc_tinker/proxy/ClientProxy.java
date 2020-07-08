@@ -1,7 +1,9 @@
 package mrthomas20121.tfc_tinker.proxy;
 import mrthomas20121.tfc_tinker.Items.Items;
+import mrthomas20121.tfc_tinker.registry.ItemsRegistry;
+import mrthomas20121.tfc_tinker.toolparts.Parts;
 import mrthomas20121.tfc_tinker.TFC_Tinker;
-import mrthomas20121.tfc_tinker.ToolPart.Parts;
+import net.dries007.tfc.objects.items.ItemTFC;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -39,7 +41,10 @@ public class ClientProxy extends CommonProxy {
     }
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event) {
-        ModelLoader.setCustomModelResourceLocation(Items.grout, 0 , new ModelResourceLocation(Items.grout.getRegistryName(), "inventory"));
-        ModelLoader.setCustomModelResourceLocation(Items.grout_brick, 0 , new ModelResourceLocation(Items.grout_brick.getRegistryName(), "inventory"));
+
+        for(ItemTFC item : ItemsRegistry.items)
+        {
+            ModelLoader.setCustomModelResourceLocation(item, 0 , new ModelResourceLocation(item.getRegistryName(), "inventory"));
+        }
     }
 }
