@@ -1,5 +1,6 @@
 package mrthomas20121.tfc_tinker.Items;
 
+import mrthomas20121.tfc_tinker.Api.Types.Type;
 import mrthomas20121.tfc_tinker.Client.TFCTicGuiHandler;
 import mrthomas20121.tfc_tinker.TFC_Tinker;
 import net.dries007.tfc.api.capability.size.Size;
@@ -45,7 +46,7 @@ public class ItemGrout extends ItemTFC {
         ItemStack stack = player.getHeldItem(hand);
         if (!world.isRemote && !player.isSneaking() && stack.getCount() > 1)
         {
-            TFCTicGuiHandler.openGui(world, player.getPosition(), player, TFCTicGuiHandler.Type.KNAPPING_GROUT);
+            TFCTicGuiHandler.openGui(world, player.getPosition(), player, Type.KNAPPING_GROUT);
         }
         return new ActionResult<>(EnumActionResult.SUCCESS, stack);
     }
