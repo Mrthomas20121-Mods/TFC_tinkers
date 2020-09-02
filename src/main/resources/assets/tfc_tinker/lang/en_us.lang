@@ -23,10 +23,11 @@ material.antimony.name=Antimony
 material.invar.name=Invar
 material.nickel_silver.name=Nickel Silver
 material.red_alloy.name=Red Alloy
+material.beryllium_copper.name=Beryllium Copper
+material.zircaloy.name=Zircaloy
 
-# harvest levels
-harvestlevel.redsteel = %1Red Steel
-harvestlevel.bluesteel = %2Blue Steel
+# jei
+jei.category.tfc.knap.grout=Grout Knapping
 
 # traits
 modifier.brittle.name=Brittle
