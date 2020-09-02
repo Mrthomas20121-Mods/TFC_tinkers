@@ -22,6 +22,10 @@ repositories {
         name "Mobius Repo"
         url "http://tehnut.info/maven"
     }
+    maven {
+        name "Craftweaker"
+        url "https://maven.blamejared.com"
+    }
     maven { 
         name "slimeknight maven"
         url "http://dvs1.progwml6.com/files/maven"
@@ -39,7 +43,7 @@ repositories {
     }
 }
 
-version = "1.4.1"
+version = "1.4.5"
 group= "mrthomas20121.tfc_tinker"
 archivesBaseName = "tfc_tinkers"
 
@@ -63,6 +67,8 @@ dependencies {
     deobfCompile "slimeknights.mantle:Mantle:1.12-1.3.3.55"
     deobfCompile "slimeknights:TConstruct:1.12.2-2.13.0.183"
     deobfCompile "mezz.jei:jei_1.12.2:4.15.0.291"
+    deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.554"
+    deobfCompile "com.blamejared:MTLib:3.0.4.8"
     compile fileTree(include: ["*.jar"], dir: "libs")
 }
 

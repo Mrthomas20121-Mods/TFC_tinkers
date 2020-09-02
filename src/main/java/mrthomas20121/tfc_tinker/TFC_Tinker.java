@@ -15,22 +15,21 @@ import mrthomas20121.tfc_tinker.toolparts.Parts;
         dependencies = "required-after:forge@[14.23.5.2847,);"
         + "required-after:mantle@[1.12-1.3.3.49,);"
         + "required-after:tconstruct@[1.12.2-2.12.0.157,);"
-        + "required-after:biolib@[1.0.4,);"
-        + "required-after:tfc@[1.4.0.149,);")
+        + "required-after:biolib@[1.0.7,);"
+        + "required-after:tfc@[1.7.2.160,);"
+        + "required-after:rocksalt@[1.0.1,);")
 public class TFC_Tinker
 {
     @Mod.Instance
     public static TFC_Tinker instance;
     public static final String MODID = "tfc_tinker";
     public static final String NAME = "TFC_Tinker's";
-    public static final String VERSION = "1.4.1";
+    public static final String VERSION = "1.4.5";
 
     public static Logger logger;
 
     @SidedProxy(serverSide = "mrthomas20121.tfc_tinker.proxy.CommonProxy", clientSide = "mrthomas20121.tfc_tinker.proxy.ClientProxy")
     public static CommonProxy proxy;
-
-    public static ModuleTFC moduleTFC = new ModuleTFC();
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
@@ -38,6 +37,7 @@ public class TFC_Tinker
         MinecraftForge.EVENT_BUS.register(this);
         logger = event.getModLog();
         proxy.preInit(event);
+        ModuleTFC.getInstance().preInit(event);
    }
 
     @Mod.EventHandler
@@ -45,7 +45,7 @@ public class TFC_Tinker
     {
         proxy.init(event);
         Parts.init(event);
-        moduleTFC.init(event);
+        ModuleTFC.getInstance().init(event);
     }
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event)
