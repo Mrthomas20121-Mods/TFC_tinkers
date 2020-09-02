@@ -1,6 +1,4 @@
-package mrthomas20121.tfc_tinker.Traits;
-
-import slimeknights.tconstruct.tools.traits.*;
+package mrthomas20121.tfc_tinker.traits;
 
 public class TraitsHelper {
 

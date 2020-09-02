@@ -3,22 +3,34 @@ package mrthomas20121.tfc_tinker.modules;
 import com.google.common.collect.Lists;
 import mrthomas20121.biolib.common.*;
 import mrthomas20121.biolib.util.armorUtils;
-import mrthomas20121.tfc_tinker.Config.ConfigTic;
+import mrthomas20121.rocksalt.utils.FluidUtils;
+import mrthomas20121.tfc_tinker.config.ConfigTic;
 import mrthomas20121.tfc_tinker.TFC_Tinker;
 import mrthomas20121.tfc_tinker.common.MaterialBuilderTFC;
+import net.dries007.tfc.api.recipes.barrel.BarrelRecipe;
 import net.dries007.tfc.api.registries.TFCRegistries;
 import net.dries007.tfc.api.registries.TFCRegistryEvent;
 import net.dries007.tfc.api.types.Metal;
+import net.dries007.tfc.objects.blocks.BlocksTFC;
+import net.dries007.tfc.objects.fluids.FluidsTFC;
+import net.dries007.tfc.objects.fluids.properties.FluidWrapper;
+import net.dries007.tfc.objects.inventory.ingredient.IIngredient;
+import net.dries007.tfc.objects.items.ItemsTFC;
 import net.dries007.tfc.objects.items.metal.ItemMetal;
+import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.calendar.ICalendar;
+import net.minecraft.init.Items;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.registries.IForgeRegistry;
 import slimeknights.tconstruct.library.events.MaterialEvent;
 import slimeknights.tconstruct.library.materials.*;
 
 import net.dries007.tfc.api.types.Ore;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Loader;
@@ -30,16 +42,25 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.commons.lang3.StringUtils;
 import slimeknights.tconstruct.library.materials.Material;
+import slimeknights.tconstruct.common.config.Config;
 
 import java.util.ArrayList;
 
-import static mrthomas20121.tfc_tinker.Items.Items.*;
+import static mrthomas20121.tfc_tinker.items.Items.*;
 
 @Mod.EventBusSubscriber(modid = TFC_Tinker.MODID)
 public class ModuleTFC implements ModuleBase {
 
+    public static FluidWrapper clay = Helpers.getNull();
+
     public static ArrayList<MaterialBuilderTFC> materials = new ArrayList<>();
     private static ArrayList<String> nerfs = Lists.newArrayList(new String[] {"steel", "copper", "cobalt", "manyullyn"});
+
+    private static ModuleTFC instance = new ModuleTFC();
+
+    public static ModuleTFC getInstance() {
+        return instance;
+    }
 
     @SubscribeEvent(priority=EventPriority.LOWEST)
     public void onStatRegister(MaterialEvent.StatRegisterEvent<IMaterialStats> statRegisterEvent) {
@@ -87,15 +108,25 @@ public class ModuleTFC implements ModuleBase {
                     material.setHandleStats(1, tool.getMaxUses()/2);
                     material.setExtraStats(tool.getMaxUses()/10);
                     material.preInit(cap(metal.getRegistryName().getPath()));
-                    TFC_Tinker.moduleTFC.addArmorStats(material);
+                    instance.addArmorStats(material);
                     materials.add(material);
                 }
             }
         }
     }
 
+    @SubscribeEvent
+    public static void onRegisterBarrelRecipeEvent(RegistryEvent.Register<BarrelRecipe> event)
+    {
+        IForgeRegistry<BarrelRecipe> r = event.getRegistry();
+        r.register(new BarrelRecipe(IIngredient.of(FluidsTFC.HOT_WATER.get(), 1000), IIngredient.of(new ItemStack(Items.CLAY_BALL)), new FluidStack(FluidRegistry.getFluid("clay"), 500), ItemStack.EMPTY, 4 * ICalendar.TICKS_IN_HOUR).setRegistryName("liquid_clay"));
+        r.register(new BarrelRecipe(IIngredient.of(FluidRegistry.getFluid("clay"), 1000), IIngredient.of(new ItemStack(BlocksTFC.AGGREGATE, 1)), null, new ItemStack(mrthomas20121.tfc_tinker.items.Items.grout, 1), 4 * ICalendar.TICKS_IN_HOUR).setRegistryName("grout"));
+    }
+
+    @Override
     public void preInit(FMLPreInitializationEvent e)
     {
+        clay = FluidUtils.registerLiquid("clay", 0xB1B2B6);
     }
 
     @Override
@@ -205,11 +236,13 @@ public class ModuleTFC implements ModuleBase {
         }
 
     }
+
+    @Override
     public void postInit(FMLPostInitializationEvent e)
     {
 
     }
-    public void addArmorStats(MaterialBuilder mat) {
+    private void addArmorStats(MaterialBuilder mat) {
         if(Loader.isModLoaded("conarm"))
         {
             new armorUtils().setArmorStats(mat, 1);

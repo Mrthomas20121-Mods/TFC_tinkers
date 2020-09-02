@@ -1,4 +1,4 @@
-package mrthomas20121.tfc_tinker.Traits;
+package mrthomas20121.tfc_tinker.traits;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;

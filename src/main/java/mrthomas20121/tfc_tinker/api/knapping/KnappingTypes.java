@@ -1,4 +1,4 @@
-package mrthomas20121.tfc_tinker.Api.Knapping;
+package mrthomas20121.tfc_tinker.api.knapping;
 
 import net.dries007.tfc.api.recipes.knapping.KnappingType;
 

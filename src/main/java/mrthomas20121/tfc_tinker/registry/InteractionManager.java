@@ -5,9 +5,8 @@ import java.util.Map;
 import java.util.function.Predicate;
 import javax.annotation.Nullable;
 
-import mrthomas20121.tfc_tinker.Api.Knapping.KnappingTypes;
-import mrthomas20121.tfc_tinker.Api.Types.Type;
-import mrthomas20121.tfc_tinker.Client.TFCTicGuiHandler;
+import mrthomas20121.tfc_tinker.api.knapping.KnappingTypes;
+import mrthomas20121.tfc_tinker.api.types.Type;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;

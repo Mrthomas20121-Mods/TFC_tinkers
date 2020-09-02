@@ -3,15 +3,12 @@ package mrthomas20121.tfc_tinker.registry;
 import net.dries007.tfc.objects.items.ItemTFC;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import java.util.ArrayList;
 
-import static mrthomas20121.tfc_tinker.Items.Items.*;
-import static mrthomas20121.tfc_tinker.TFC_Tinker.MODID;
+import static mrthomas20121.tfc_tinker.items.Items.*;
 
 public class ItemsRegistry {
 

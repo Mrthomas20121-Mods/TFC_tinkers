@@ -1,6 +1,4 @@
-package mrthomas20121.tfc_tinker.Items;
-
-import net.minecraft.item.Item;
+package mrthomas20121.tfc_tinker.items;
 
 public class Items {
     public static ItemGrout grout = new ItemGrout("grout_ball");

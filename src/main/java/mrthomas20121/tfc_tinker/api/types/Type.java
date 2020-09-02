@@ -1,4 +1,4 @@
-package mrthomas20121.tfc_tinker.Api.Types;
+package mrthomas20121.tfc_tinker.api.types;
 
 import javax.annotation.Nonnull;
 

@@ -2,14 +2,13 @@ package mrthomas20121.tfc_tinker.modules;
 
 import mrthomas20121.biolib.common.SmelteryUtils;
 import net.dries007.tfc.api.types.Metal;
-import net.dries007.tfc.objects.items.metal.ItemMetal;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import slimeknights.tconstruct.library.materials.Material;
 import tfctech.objects.items.metal.ItemTechMetal;
 import tfctech.objects.items.glassworking.ItemBlowpipe;
 
-import static mrthomas20121.tfc_tinker.Items.Items.*;
+import static mrthomas20121.tfc_tinker.items.Items.*;
 
 public class ModuleTFCTech {
     public static void castRecipes(Metal metal, Fluid castingFluid)

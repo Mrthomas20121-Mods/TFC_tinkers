@@ -1,11 +1,10 @@
 package mrthomas20121.tfc_tinker.common;
 
 import mrthomas20121.biolib.common.MaterialBuilder;
-import mrthomas20121.tfc_tinker.Traits.TraitsHelper;
+import mrthomas20121.tfc_tinker.traits.TraitsHelper;
 import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.api.types.Metal;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fluids.Fluid;
 import slimeknights.tconstruct.library.materials.Material;
 import slimeknights.tconstruct.library.materials.MaterialTypes;
 import slimeknights.tconstruct.tools.TinkerTraits;

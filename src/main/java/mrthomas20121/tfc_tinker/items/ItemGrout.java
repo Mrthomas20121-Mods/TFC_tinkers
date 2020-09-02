@@ -1,7 +1,7 @@
-package mrthomas20121.tfc_tinker.Items;
+package mrthomas20121.tfc_tinker.items;
 
-import mrthomas20121.tfc_tinker.Api.Types.Type;
-import mrthomas20121.tfc_tinker.Client.TFCTicGuiHandler;
+import mrthomas20121.tfc_tinker.api.types.Type;
+import mrthomas20121.tfc_tinker.registry.TFCTicGuiHandler;
 import mrthomas20121.tfc_tinker.TFC_Tinker;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
@@ -29,7 +29,7 @@ public class ItemGrout extends ItemTFC {
     @Override
     public Size getSize(ItemStack stack)
     {
-        return Size.SMALL;
+        return Size.VERY_SMALL;
     }
 
     @Nonnull
@@ -43,8 +43,9 @@ public class ItemGrout extends ItemTFC {
     @Nonnull
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand)
     {
+        TFC_Tinker.logger.info("can you open grout?");
         ItemStack stack = player.getHeldItem(hand);
-        if (!world.isRemote && !player.isSneaking() && stack.getCount() > 1)
+        if (!world.isRemote && !player.isSneaking())
         {
             TFCTicGuiHandler.openGui(world, player.getPosition(), player, Type.KNAPPING_GROUT);
         }

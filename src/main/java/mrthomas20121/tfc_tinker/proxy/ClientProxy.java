@@ -1,5 +1,4 @@
 package mrthomas20121.tfc_tinker.proxy;
-import mrthomas20121.tfc_tinker.Items.Items;
 import mrthomas20121.tfc_tinker.registry.ItemsRegistry;
 import mrthomas20121.tfc_tinker.toolparts.Parts;
 import mrthomas20121.tfc_tinker.TFC_Tinker;

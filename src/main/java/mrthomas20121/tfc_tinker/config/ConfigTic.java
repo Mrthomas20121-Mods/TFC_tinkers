@@ -1,4 +1,4 @@
-package mrthomas20121.tfc_tinker.Config;
+package mrthomas20121.tfc_tinker.config;
 
 import mrthomas20121.tfc_tinker.TFC_Tinker;
 import mrthomas20121.tfc_tinker.proxy.CommonProxy;
@@ -9,9 +9,6 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.logging.log4j.Level;
-
-import java.util.Arrays;
-import java.util.List;
 
 @Mod.EventBusSubscriber(modid = TFC_Tinker.MODID)
 public final class ConfigTic {

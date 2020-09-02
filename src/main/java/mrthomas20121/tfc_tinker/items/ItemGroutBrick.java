@@ -1,4 +1,4 @@
-package mrthomas20121.tfc_tinker.Items;
+package mrthomas20121.tfc_tinker.items;
 
 import mrthomas20121.tfc_tinker.TFC_Tinker;
 import net.dries007.tfc.api.capability.size.Size;

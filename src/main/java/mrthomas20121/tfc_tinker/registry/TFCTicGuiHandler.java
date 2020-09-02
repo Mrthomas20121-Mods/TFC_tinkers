@@ -1,8 +1,7 @@
-package mrthomas20121.tfc_tinker.Client;
+package mrthomas20121.tfc_tinker.registry;
 
-import mrthomas20121.tfc_tinker.Api.Knapping.KnappingTypes;
-import mrthomas20121.tfc_tinker.Api.Types.Type;
-import mrthomas20121.tfc_tinker.Items.ItemGrout;
+import mrthomas20121.tfc_tinker.api.knapping.KnappingTypes;
+import mrthomas20121.tfc_tinker.api.types.Type;
 import mrthomas20121.tfc_tinker.TFC_Tinker;
 
 import net.dries007.tfc.client.gui.*;
@@ -14,11 +13,9 @@ import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class TFCTicGuiHandler implements IGuiHandler {
