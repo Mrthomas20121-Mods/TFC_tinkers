@@ -2,11 +2,13 @@ package mrthomas20121.tfc_tinker.modules;
 
 import com.google.common.collect.Lists;
 import mrthomas20121.biolib.common.*;
+import mrthomas20121.biolib.objects.material.MaterialStats;
+import mrthomas20121.biolib.objects.material.MaterialWrapper;
 import mrthomas20121.biolib.util.armorUtils;
 import mrthomas20121.rocksalt.utils.FluidUtils;
 import mrthomas20121.tfc_tinker.config.ConfigTic;
 import mrthomas20121.tfc_tinker.TFC_Tinker;
-import mrthomas20121.tfc_tinker.common.MaterialBuilderTFC;
+import mrthomas20121.tfc_tinker.common.MaterialWrapperTFC;
 import net.dries007.tfc.api.recipes.barrel.BarrelRecipe;
 import net.dries007.tfc.api.registries.TFCRegistries;
 import net.dries007.tfc.api.registries.TFCRegistryEvent;
@@ -15,12 +17,10 @@ import net.dries007.tfc.objects.blocks.BlocksTFC;
 import net.dries007.tfc.objects.fluids.FluidsTFC;
 import net.dries007.tfc.objects.fluids.properties.FluidWrapper;
 import net.dries007.tfc.objects.inventory.ingredient.IIngredient;
-import net.dries007.tfc.objects.items.ItemsTFC;
 import net.dries007.tfc.objects.items.metal.ItemMetal;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.ICalendar;
 import net.minecraft.init.Items;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.FluidStack;
@@ -42,7 +42,6 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.commons.lang3.StringUtils;
 import slimeknights.tconstruct.library.materials.Material;
-import slimeknights.tconstruct.common.config.Config;
 
 import java.util.ArrayList;
 
@@ -53,7 +52,7 @@ public class ModuleTFC implements ModuleBase {
 
     public static FluidWrapper clay = Helpers.getNull();
 
-    public static ArrayList<MaterialBuilderTFC> materials = new ArrayList<>();
+    public static ArrayList<MaterialWrapperTFC> materials = new ArrayList<>();
     private static ArrayList<String> nerfs = Lists.newArrayList(new String[] {"steel", "copper", "cobalt", "manyullyn"});
 
     private static ModuleTFC instance = new ModuleTFC();
@@ -100,16 +99,22 @@ public class ModuleTFC implements ModuleBase {
             {
                 if(!blacklists.contains(metal.getRegistryName().getPath()))
                 {
-                    MaterialBuilderTFC material = new MaterialBuilderTFC(metal);
-                    material.setCastable(true).setCraftable(false);
-                    material.setTraits();
+
+
+                    MaterialWrapperTFC materialWrapperTFC = new MaterialWrapperTFC(metal);
+                    materialWrapperTFC.setTraits();
+
                     Item.ToolMaterial tool = metal.getToolMetal();
-                    material.setHeadStats(tool.getMaxUses(), tool.getEfficiency(), tool.getAttackDamage(), tool.getHarvestLevel());
-                    material.setHandleStats(1, tool.getMaxUses()/2);
-                    material.setExtraStats(tool.getMaxUses()/10);
-                    material.preInit(cap(metal.getRegistryName().getPath()));
-                    instance.addArmorStats(material);
-                    materials.add(material);
+                    MaterialStats stats = new MaterialStats();
+                    stats.setHeadMaterialStats(tool.getMaxUses(), tool.getEfficiency(), tool.getAttackDamage(), tool.getHarvestLevel());
+                    stats.setHandleMaterialStats(1, tool.getMaxUses()/2);
+                    stats.setExtraMaterialStats(tool.getMaxUses()/10);
+
+                    if(Loader.isModLoaded("conarm"))
+                    {
+                        armorUtils.setArmorStats(materialWrapperTFC, stats, 0);
+                    }
+                    materials.add(materialWrapperTFC);
                 }
             }
         }
@@ -204,21 +209,20 @@ public class ModuleTFC implements ModuleBase {
             }
         }
 
-        for(MaterialBuilderTFC material : materials)
+        for(MaterialWrapperTFC material : materials)
         {
-            material.setCraftable(false).setCastable(true);
-            Metal metal = material.getMetal();
-            String path = cap(metal.getRegistryName().getPath());
+            material.getMaterial().setCraftable(false).setCastable(true);
+            String path = cap(material.getMaterial().getIdentifier());
 
             String doubleIngot = "ingotDouble"+path;
             String doubleSheet = "sheetDouble"+path;
             String sheet = "sheet"+path;
-            Fluid fluid = getFluid(metal);
-            material.setFluid(fluid);
-            material.setRepresentativeItem("ingot"+path);
-            material.addItem(doubleIngot, Material.VALUE_Ingot*2);
-            material.addItem(sheet, Material.VALUE_Ingot);
-            material.addItem(doubleSheet, Material.VALUE_Ingot*2);
+            Fluid fluid = getFluid(material.metal);
+            material.getMaterial().setFluid(fluid);
+            material.getMaterial().setRepresentativeItem("ingot"+path);
+            material.getMaterial().addItem(doubleIngot,1, Material.VALUE_Ingot*2);
+            material.getMaterial().addItem(sheet,1, Material.VALUE_Ingot);
+            material.getMaterial().addItem(doubleSheet,1, Material.VALUE_Ingot*2);
         }
 
         for(Ore ore : TFCRegistries.ORES.getValuesCollection())
@@ -241,12 +245,6 @@ public class ModuleTFC implements ModuleBase {
     public void postInit(FMLPostInitializationEvent e)
     {
 
-    }
-    private void addArmorStats(MaterialBuilder mat) {
-        if(Loader.isModLoaded("conarm"))
-        {
-            new armorUtils().setArmorStats(mat, 1);
-        }
     }
     private static String cap(String str)
     {

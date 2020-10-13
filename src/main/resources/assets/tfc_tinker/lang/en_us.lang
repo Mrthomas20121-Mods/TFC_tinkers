@@ -1,30 +1,40 @@
 # TFC Materials
-material.sterling_silver.name=Sterling Silver
-material.rose_gold.name=Rose Gold
-material.bismuth.name=Bismuth
-material.red_steel.name=Red Steel
-material.blue_steel.name=Blue Steel
-material.black_steel.name=Black Steel
-material.wrought_iron.name=Wrought Iron
-material.platinum.name=Platinum
-material.zinc.name=Zinc
-material.nickel.name=Nickel
-material.bismuth_bronze.name=Bismuth Bronze
-material.black_bronze.name=Black Bronze
+material.tfc_sterling_silver.name=Sterling Silver
+material.tfc_rose_gold.name=Rose Gold
+material.tfc_bismuth.name=Bismuth
+material.tfc_red_steel.name=Red Steel
+material.tfc_blue_steel.name=Blue Steel
+material.tfc_black_steel.name=Black Steel
+material.tfc_wrought_iron.name=Wrought Iron
+material.tfc_platinum.name=Platinum
+material.tfc_zinc.name=Zinc
+material.tfc_nickel.name=Nickel
+material.tfc_bismuth_bronze.name=Bismuth Bronze
+material.tfc_black_bronze.name=Black Bronze
 
 # TFC Metallum Materials
-material.constantan.name=Constantan
-material.tungsten.name=Tungsten
-material.tungsten_steel.name=Tungsten Steel
-material.titanium.name=Titanium
-material.osmium.name=Osmium
-material.aluminium.name=Aluminium
-material.antimony.name=Antimony
-material.invar.name=Invar
-material.nickel_silver.name=Nickel Silver
-material.red_alloy.name=Red Alloy
-material.beryllium_copper.name=Beryllium Copper
-material.zircaloy.name=Zircaloy
+material.tfc_constantan.name=Constantan
+material.tfc_tungsten.name=Tungsten
+material.tfc_tungsten_steel.name=Tungsten Steel
+material.tfc_titanium.name=Titanium
+material.tfc_mithril.name=Mithril
+material.tfc_osmium.name=Osmium
+material.tfc_aluminium.name=Aluminium
+material.tfc_antimony.name=Antimony
+material.tfc_invar.name=Invar
+material.tfc_nickel_silver.name=Nickel Silver
+material.tfc_red_alloy.name=Red Alloy
+material.tfc_beryllium_copper.name=Beryllium Copper
+material.tfc_zircaloy.name=Zircaloy
+
+# TFCompat Materials
+material.tfc_thaumium.name=Thaumium
+material.tfc_enderium.name=Enderium
+material.tfc_signalum.name=Signalum
+material.tfc_lumium.name=Lumium
+
+# fluids
+fluid.clay=Liquid Clay
 
 # jei
 jei.category.tfc.knap.grout=Grout Knapping
