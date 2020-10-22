@@ -40,8 +40,8 @@ fluid.clay=Liquid Clay
 jei.category.tfc.knap.grout=Grout Knapping
 
 # traits
-modifier.brittle.name=Brittle
-modifier.brittle.desc=§oIt's meant to be broken!§r\nThe Tools is slowing losing durability
+modifier.tfc_brittle.name=Brittle
+modifier.tfc_brittle.desc=§oIt's meant to be broken!§r\nUsing the tool make it lose more durability.
 
 modifier.ferromagnetism.name=Ferromagnetism
 modifier.ferromagnetism.desc=§oIt's Magical§r\nBreaking Iron seems to give strange power

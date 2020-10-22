@@ -10,7 +10,7 @@ import slimeknights.tconstruct.library.traits.AbstractTrait;
 public class TraitBrittle extends AbstractTrait {
 
     public TraitBrittle() {
-        super("brittle", 0xffffff);
+        super("tfc_brittle", 0xffffff);
     }
 
     @Override
