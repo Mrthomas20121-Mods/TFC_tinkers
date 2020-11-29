@@ -1,12 +1,15 @@
 package mrthomas20121.tfc_tinker.proxy;
-import mrthomas20121.tfc_tinker.registry.ItemsRegistry;
+import mrthomas20121.tfc_tinker.objects.blocks.TFCTinkerBlocks;
+import mrthomas20121.tfc_tinker.objects.items.TFCTinkerItems;
 import mrthomas20121.tfc_tinker.toolparts.Parts;
 import mrthomas20121.tfc_tinker.TFC_Tinker;
 import net.dries007.tfc.objects.items.ItemTFC;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -34,6 +37,7 @@ public class ClientProxy extends CommonProxy {
     public <T extends Item & IToolPart> void registerToolPartModel(T part) {
         ModelRegisterUtil.registerPartModel(part);
     }
+
     @Override
     public void registerToolModel(ToolCore tc) {
         ModelRegisterUtil.registerToolModel(tc);
@@ -41,9 +45,11 @@ public class ClientProxy extends CommonProxy {
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event) {
 
-        for(ItemTFC item : ItemsRegistry.items)
+        for(Item item : TFCTinkerItems.getItems())
         {
             ModelLoader.setCustomModelResourceLocation(item, 0 , new ModelResourceLocation(item.getRegistryName(), "inventory"));
         }
+
+        ModelLoader.setCustomStateMapper(TFCTinkerBlocks.clayBlock, new StateMap.Builder().ignore(BlockFluidBase.LEVEL).build());
     }
 }

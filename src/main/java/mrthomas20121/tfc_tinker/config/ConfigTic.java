@@ -13,14 +13,6 @@ import org.apache.logging.log4j.Level;
 @Mod.EventBusSubscriber(modid = TFC_Tinker.MODID)
 public final class ConfigTic {
 
-    private static final String CATEGORY_METERIALS = "materials";
-
-    public static boolean register_alloy = true;
-    public static boolean tfctech = true;
-    public static String[] materialBlacklists = {};
-    public static String[] castFluids = { "sterling_silver", "rose_gold", "brass" };
-    public static String[] metalBlacklists = { "tfc:unknown", "tfc:weak_steel", "tfc:weak_blue_steel", "tfc:weak_red_steel", "tfc:high_carbon_steel", "tfc:high_carbon_blue_steel", "tfc:high_carbon_red_steel", "tfc:high_carbon_black_steel"};
-
     @SubscribeEvent
     public static void onConfigChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event)
     {
@@ -30,31 +22,30 @@ public final class ConfigTic {
         }
     }
 
-    // Call this from CommonProxy.preInit(). It will create our config if it doesn't
-    // exist yet and read the values if it does exist.
-    public static void readConfig() {
-        Configuration cfg = CommonProxy.config;
-        try {
-            cfg.load();
-            initGeneralConfig(cfg);
-            initMaterialConfig(cfg);
-        } catch (Exception e1) {
-            TFC_Tinker.logger.log(Level.ERROR, "Problem loading config file!", e1);
-        } finally {
-            if (cfg.hasChanged()) {
-                cfg.save();
-            }
-        }
+    @Config(name = "TFCTinkers", modid = TFC_Tinker.MODID)
+    public static class ConfigTFCTinker {
+        public final static ConfigMaterial material = new ConfigMaterial();
+        public final static ConfigGeneral general = new ConfigGeneral();
     }
 
-    private static void initMaterialConfig(Configuration cfg) {
-        // cfg.getBoolean() will get the value in the config if it is already specified there. If not it will create the value.
-        materialBlacklists = cfg.getStringList("material_blacklist", CATEGORY_METERIALS, materialBlacklists, "Materials blacklist. blacklisted materials won't be registered.");
+    public static class ConfigMaterial {
+
+        @Config.LangKey("config.general.tfctech")
+        @Config.Comment("List of Tinkers' Construct material added by TFC Tinkers to remove.")
+        public String[] material_blacklists = {};
     }
-    private static void initGeneralConfig(Configuration cfg) {
-        register_alloy = cfg.getBoolean("register_alloy", Configuration.CATEGORY_GENERAL, register_alloy, "Set to false to disable alloy from generating in the tinker smeltery");
-        castFluids = cfg.getStringList("cast_fluids", Configuration.CATEGORY_GENERAL, castFluids, "List of Fluids used to make TFC Tinker's Casts.");
-        metalBlacklists = cfg.getStringList("metal_blacklists", Configuration.CATEGORY_GENERAL, metalBlacklists, "Metal blacklist for casting and melting recipes, do not remove the default ones or it will crash.");
-        tfctech = cfg.getBoolean("tfc_tech", Configuration.CATEGORY_GENERAL, tfctech, "Set to false to disable tfctech integration");
+
+    public static class ConfigGeneral {
+        @Config.LangKey("config.general.alloys")
+        @Config.Comment("Set to false to disable Smeltery alloys added by TFC Tinker.")
+        public boolean register_alloys = true;
+
+        @Config.LangKey("config.general.metal_list")
+        @Config.Comment("List of Metals ignored by TFC Tinker. do not remove the default one or it will crash.")
+        public String[] metalBlacklist = { "tfc:unknown", "tfc:weak_steel", "tfc:weak_blue_steel", "tfc:weak_red_steel", "tfc:high_carbon_steel", "tfc:high_carbon_blue_steel", "tfc:high_carbon_red_steel", "tfc:high_carbon_black_steel"};
+
+        @Config.LangKey("config.general.tfctech")
+        @Config.Comment("Set to false to disable TFCTech Integration.")
+        public boolean tfctech = true;
     }
 }

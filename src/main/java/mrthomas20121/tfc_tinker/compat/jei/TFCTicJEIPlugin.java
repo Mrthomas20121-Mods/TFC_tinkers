@@ -3,13 +3,11 @@ package mrthomas20121.tfc_tinker.compat.jei;
 import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
-import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mrthomas20121.tfc_tinker.TFC_Tinker;
 import mrthomas20121.tfc_tinker.api.knapping.KnappingTypes;
-import net.dries007.tfc.TerraFirmaCraft;
+import mrthomas20121.tfc_tinker.client.TFCTinkerKnappingGui;
 import net.dries007.tfc.api.registries.TFCRegistries;
-import net.dries007.tfc.client.gui.GuiKnapping;
 import net.dries007.tfc.compat.jei.categories.KnappingCategory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
@@ -20,7 +18,7 @@ import java.util.stream.Collectors;
 
 @JEIPlugin
 public class TFCTicJEIPlugin implements IModPlugin {
-    public static final String KNAP_GROUT_UID = TerraFirmaCraft.MOD_ID + ".knap.grout";
+    public static final String KNAP_GROUT_UID = TFC_Tinker.MODID + ".knap.grout";
 
     @Override
     public void registerCategories(IRecipeCategoryRegistration registry)
@@ -41,6 +39,6 @@ public class TFCTicJEIPlugin implements IModPlugin {
         {
             registry.addRecipeCatalyst(itemStack, KNAP_GROUT_UID);
         }
-        registry.addRecipeClickArea(GuiKnapping.class, 97, 44, 22, 15, KNAP_GROUT_UID);
+        registry.addRecipeClickArea(TFCTinkerKnappingGui.class, 97, 44, 22, 15, KNAP_GROUT_UID);
     }
 }

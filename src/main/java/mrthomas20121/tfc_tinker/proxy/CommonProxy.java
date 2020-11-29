@@ -1,9 +1,11 @@
 package mrthomas20121.tfc_tinker.proxy;
 
-import mrthomas20121.tfc_tinker.registry.TFCTicGuiHandler;
+import mrthomas20121.tfc_tinker.client.TFCTicGuiHandler;
 import mrthomas20121.tfc_tinker.config.ConfigTic;
-import mrthomas20121.tfc_tinker.registry.ItemsRegistry;
+import mrthomas20121.tfc_tinker.objects.blocks.TFCTinkerBlocks;
+import mrthomas20121.tfc_tinker.objects.items.TFCTinkerItems;
 import mrthomas20121.tfc_tinker.toolparts.Parts;
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
@@ -27,11 +29,7 @@ import static mrthomas20121.tfc_tinker.TFC_Tinker.instance;
 @Mod.EventBusSubscriber
 public class CommonProxy {
 
-    public static Configuration config;
     public void preInit(FMLPreInitializationEvent e) {
-        File directory = e.getModConfigurationDirectory();
-        config = new Configuration(new File(directory.getPath(), "tfc_tinkers.cfg"));
-        ConfigTic.readConfig();
     }
 
     public void init(FMLInitializationEvent e) {
@@ -53,7 +51,13 @@ public class CommonProxy {
     public static void registerItems(RegistryEvent.Register<Item> event)
     {
         Parts.registerItems(event);
-        ItemsRegistry.registerItems(event);
+        TFCTinkerItems.init(event);
+    }
+
+    @SubscribeEvent
+    public static void registerBlocks(RegistryEvent.Register<Block> event)
+    {
+        TFCTinkerBlocks.init(event);
     }
 
     public <T extends Item & IToolPart> void registerToolPartModel(T part) { }

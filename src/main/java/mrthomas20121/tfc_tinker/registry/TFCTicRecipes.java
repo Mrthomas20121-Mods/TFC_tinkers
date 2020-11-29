@@ -1,7 +1,7 @@
 package mrthomas20121.tfc_tinker.registry;
 
 import mrthomas20121.tfc_tinker.api.knapping.KnappingTypes;
-import mrthomas20121.tfc_tinker.items.Items;
+import mrthomas20121.tfc_tinker.objects.items.TFCTinkerItems;
 import net.dries007.tfc.api.recipes.heat.HeatRecipe;
 import net.dries007.tfc.api.recipes.heat.HeatRecipeSimple;
 import net.dries007.tfc.api.recipes.knapping.KnappingRecipe;
@@ -26,7 +26,7 @@ public final class TFCTicRecipes {
         IForgeRegistry<KnappingRecipe> r = event.getRegistry();
 
         r.register(
-                new KnappingRecipeSimple(KnappingTypes.GROUT, true, new ItemStack(Items.grout_brick, 2), "     ", "XXXXX", "     ", "XXXXX", "     ").setRegistryName(MODID, "seared_brick_knapping")
+                new KnappingRecipeSimple(KnappingTypes.GROUT, true, new ItemStack(TFCTinkerItems.grout_brick, 2), "     ", "XXXXX", "     ", "XXXXX", "     ").setRegistryName(MODID, "seared_brick_knapping")
         );
     }
 
@@ -34,7 +34,7 @@ public final class TFCTicRecipes {
     public static void onRegisterHeatRecipeEvent(RegistryEvent.Register<HeatRecipe> event)
     {
         event.getRegistry().register(
-                new HeatRecipeSimple(IIngredient.of(new ItemStack(Items.grout_brick)), searedBrick, 600f, Metal.Tier.TIER_I).setRegistryName("seared_brick"));
+                new HeatRecipeSimple(IIngredient.of(new ItemStack(TFCTinkerItems.grout_brick)), searedBrick, 600f, Metal.Tier.TIER_I).setRegistryName("seared_brick"));
 
     }
 }

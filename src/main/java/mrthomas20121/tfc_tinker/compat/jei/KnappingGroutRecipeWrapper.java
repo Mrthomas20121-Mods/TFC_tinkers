@@ -3,7 +3,7 @@ package mrthomas20121.tfc_tinker.compat.jei;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
-import mrthomas20121.tfc_tinker.items.Items;
+import mrthomas20121.tfc_tinker.objects.items.TFCTinkerItems;
 import mrthomas20121.tfc_tinker.TFC_Tinker;
 import net.dries007.tfc.api.recipes.knapping.KnappingRecipe;
 import net.dries007.tfc.compat.jei.wrappers.KnappingRecipeWrapper;
@@ -23,6 +23,6 @@ public class KnappingGroutRecipeWrapper extends KnappingRecipeWrapper {
     @Override
     public void getIngredients(IIngredients ingredients)
     {
-        ingredients.setOutputLists(VanillaTypes.ITEM, Helpers.listOf(Helpers.listOf(recipe.getOutput(new ItemStack(Items.grout, 1)))));
+        ingredients.setOutputLists(VanillaTypes.ITEM, Helpers.listOf(Helpers.listOf(recipe.getOutput(new ItemStack(TFCTinkerItems.grout, 1)))));
     }
 }
