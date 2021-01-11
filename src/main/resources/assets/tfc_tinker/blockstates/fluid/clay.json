@@ -1,15 +1,15 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "forge:fluid",
-    "textures": {}
+    "model": "forge:fluid"
   },
   "variants": {
-    "normal": {
-      "transform": "forge:default-item",
-      "custom": {
-        "fluid": "clay"
+    "normal": [
+      {
+        "custom": {
+          "fluid": "clay"
+        }
       }
-    }
+    ]
   }
 }

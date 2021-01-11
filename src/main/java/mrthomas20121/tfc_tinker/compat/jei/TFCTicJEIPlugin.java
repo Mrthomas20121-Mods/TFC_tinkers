@@ -5,7 +5,7 @@ import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mrthomas20121.tfc_tinker.TFC_Tinker;
-import mrthomas20121.tfc_tinker.api.knapping.KnappingTypes;
+import mrthomas20121.tfc_tinker.api.knapping.TFCTinkerKnappingType;
 import mrthomas20121.tfc_tinker.client.TFCTinkerKnappingGui;
 import net.dries007.tfc.api.registries.TFCRegistries;
 import net.dries007.tfc.compat.jei.categories.KnappingCategory;
@@ -30,7 +30,7 @@ public class TFCTicJEIPlugin implements IModPlugin {
     public void register(IModRegistry registry)
     {
         List<KnappingGroutRecipeWrapper> groutknapRecipes = TFCRegistries.KNAPPING.getValuesCollection().stream()
-                .filter(recipe -> recipe.getType() == KnappingTypes.GROUT)
+                .filter(recipe -> recipe.getType() == TFCTinkerKnappingType.GROUT)
                 .map(recipe -> new KnappingGroutRecipeWrapper(recipe, registry.getJeiHelpers().getGuiHelper()))
                 .collect(Collectors.toList());
         registry.addRecipes(groutknapRecipes, KNAP_GROUT_UID);

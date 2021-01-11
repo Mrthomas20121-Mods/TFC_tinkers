@@ -3,7 +3,7 @@ package mrthomas20121.tfc_tinker.compat.crafttweaker;
 import java.util.ArrayList;
 import java.util.List;
 
-import mrthomas20121.tfc_tinker.api.knapping.KnappingTypes;
+import mrthomas20121.tfc_tinker.api.knapping.TFCTinkerKnappingType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
@@ -28,7 +28,7 @@ public class CTGroutKnapping
         if (output == null || pattern.length < 1 || pattern.length > 5)
             throw new IllegalArgumentException("Output item must be non-null and pattern must be a closed interval [1, 5]");
         ItemStack outputStack = (ItemStack) output.getInternal();
-        KnappingRecipe recipe = new KnappingRecipeSimple(KnappingTypes.GROUT, true, outputStack, pattern).setRegistryName(registryName);
+        KnappingRecipe recipe = new KnappingRecipeSimple(TFCTinkerKnappingType.GROUT, true, outputStack, pattern).setRegistryName(registryName);
         CraftTweakerAPI.apply(new IAction()
         {
             @Override
@@ -54,7 +54,7 @@ public class CTGroutKnapping
         List<KnappingRecipe> removeList = new ArrayList<>();
         TFCRegistries.KNAPPING.getValuesCollection()
                 .stream()
-                .filter(x -> x.getType() == KnappingTypes.GROUT && x.getOutput(ItemStack.EMPTY).isItemEqual(item))
+                .filter(x -> x.getType() == TFCTinkerKnappingType.GROUT && x.getOutput(ItemStack.EMPTY).isItemEqual(item))
                 .forEach(removeList::add);
         for (KnappingRecipe rem : removeList)
         {

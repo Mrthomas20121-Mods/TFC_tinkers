@@ -2,8 +2,8 @@
 name: Bug report
 about: Create a report to help us improve
 title: ''
-labels: ''
-assignees: ''
+labels: 'unconfirmed bug'
+assignees: 'Mrthomas20121'
 
 ---
 
@@ -25,7 +25,7 @@ post your crash report to pastebin or other sites to help me figure out what is 
 
 **Version**
  - Minecraft: :
- - TinkerFirmaCraft :
+ - TFC Tinkers :
  - Forge :
 
 **Additional mods involved**

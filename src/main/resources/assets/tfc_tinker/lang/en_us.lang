@@ -26,6 +26,7 @@ material.tfc_nickel_silver.name=Nickel Silver
 material.tfc_red_alloy.name=Red Alloy
 material.tfc_beryllium_copper.name=Beryllium Copper
 material.tfc_zircaloy.name=Zircaloy
+material.tfc_boron.name=Boron
 
 # TFCompat Materials
 material.tfc_thaumium.name=Thaumium
@@ -34,7 +35,7 @@ material.tfc_signalum.name=Signalum
 material.tfc_lumium.name=Lumium
 
 # fluids
-fluid.clay=Liquid Clay
+fluid.clay.name=Liquid Clay
 
 # jei
 jei.category.tfc_tinker.knap.grout=Grout Knapping

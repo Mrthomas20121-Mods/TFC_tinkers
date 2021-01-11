@@ -19,7 +19,6 @@ import javax.annotation.Nonnull;
 public class ItemGrout extends ItemTFC {
 
     public ItemGrout(String name) {
-        this.setMaxDamage(0);
         this.setCreativeTab(CreativeTabs.MISC);
         this.setRegistryName(TFC_Tinker.MODID, name);
         this.setTranslationKey(TFC_Tinker.MODID+"."+name);
@@ -36,16 +35,15 @@ public class ItemGrout extends ItemTFC {
     @Override
     public Weight getWeight(ItemStack stack)
     {
-        return Weight.LIGHT;
+        return Weight.VERY_LIGHT;
     }
 
     @Override
     @Nonnull
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand)
     {
-        TFC_Tinker.logger.info("can you open grout?");
         ItemStack stack = player.getHeldItem(hand);
-        if (!world.isRemote && !player.isSneaking())
+        if (!world.isRemote && !player.isSneaking() && stack.getCount() > 0)
         {
             TFCTicGuiHandler.openGui(world, player.getPosition(), player, Type.KNAPPING_GROUT);
         }

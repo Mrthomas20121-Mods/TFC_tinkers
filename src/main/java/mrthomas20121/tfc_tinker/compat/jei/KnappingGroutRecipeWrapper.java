@@ -14,11 +14,11 @@ import net.minecraft.util.ResourceLocation;
 public class KnappingGroutRecipeWrapper extends KnappingRecipeWrapper {
 
     private static final ResourceLocation GROUT_TEXTURE = new ResourceLocation(TFC_Tinker.MODID, "textures/gui/grout_button.png");
+    private static final ResourceLocation GROUT_TEXTURE_DISABLED = new ResourceLocation(TFC_Tinker.MODID, "textures/gui/grout_button_disabled.png");
 
     public KnappingGroutRecipeWrapper(KnappingRecipe recipe, IGuiHelper helper)
     {
-        super(recipe, helper, GROUT_TEXTURE, null);
-
+        super(recipe, helper, GROUT_TEXTURE, GROUT_TEXTURE_DISABLED);
     }
     @Override
     public void getIngredients(IIngredients ingredients)

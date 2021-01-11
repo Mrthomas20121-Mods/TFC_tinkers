@@ -1,10 +1,9 @@
 package mrthomas20121.tfc_tinker.client;
 
-import mrthomas20121.tfc_tinker.api.knapping.KnappingTypes;
+import mrthomas20121.tfc_tinker.api.knapping.TFCTinkerKnappingType;
 import mrthomas20121.tfc_tinker.api.types.Type;
 import mrthomas20121.tfc_tinker.TFC_Tinker;
 
-import net.dries007.tfc.client.gui.*;
 import net.dries007.tfc.objects.container.*;
 
 import net.dries007.tfc.util.OreDictionaryHelper;
@@ -20,6 +19,7 @@ import javax.annotation.Nullable;
 
 public class TFCTicGuiHandler implements IGuiHandler {
     private static final ResourceLocation GROOUT_TEXTURE = new ResourceLocation(TFC_Tinker.MODID, "textures/gui/grout_button.png");
+    public static final ResourceLocation GROOUT_TEXTURE_DISABLED = new ResourceLocation(TFC_Tinker.MODID, "textures/gui/grout_button_disabled.png");
 
     public static void openGui(World world, BlockPos pos, EntityPlayer player, Type type)
     {
@@ -41,7 +41,7 @@ public class TFCTicGuiHandler implements IGuiHandler {
         switch (type)
         {
             case KNAPPING_GROUT:
-                return new ContainerKnapping(KnappingTypes.GROUT, player.inventory,  OreDictionaryHelper.doesStackMatchOre(stack, "grout") ? stack : player.getHeldItemOffhand());
+                return new ContainerKnapping(TFCTinkerKnappingType.GROUT, player.inventory,  OreDictionaryHelper.doesStackMatchOre(stack, "grout") ? stack : player.getHeldItemOffhand());
             default:
                 return null;
         }
@@ -55,7 +55,7 @@ public class TFCTicGuiHandler implements IGuiHandler {
         switch (type)
         {
             case KNAPPING_GROUT:
-                return new TFCTinkerKnappingGui(container, player, KnappingTypes.GROUT, GROOUT_TEXTURE);
+                return new TFCTinkerKnappingGui(container, player, TFCTinkerKnappingType.GROUT, GROOUT_TEXTURE);
             default :
                 return null;
         }

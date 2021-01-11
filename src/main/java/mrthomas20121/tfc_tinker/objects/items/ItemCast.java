@@ -2,6 +2,7 @@ package mrthomas20121.tfc_tinker.objects.items;
 
 import mrthomas20121.tfc_tinker.TFC_Tinker;
 import mrthomas20121.tfc_tinker.objects.Cast;
+import net.dries007.tfc.api.capability.metal.IMetalItem;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.api.types.Metal;
@@ -11,11 +12,12 @@ import net.minecraft.item.ItemStack;
 import slimeknights.tconstruct.library.TinkerRegistry;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ItemCast extends ItemTFC {
+public class ItemCast extends ItemTFC implements IMetalItem {
 
     private static Map<Metal, EnumMap<Cast, ItemCast>> table = new HashMap<>();
 
@@ -29,8 +31,11 @@ public class ItemCast extends ItemTFC {
         return new ItemStack(table.get(metal).get(type), amount);
     }
 
+    private Metal metal;
+
     public ItemCast(Metal metal, Cast type)
     {
+        this.metal = metal;
         String name = metal.getRegistryName().getPath();
         this.setCreativeTab(TinkerRegistry.tabSmeltery);
         this.setRegistryName(TFC_Tinker.MODID, "cast/"+type.name().toLowerCase()+"/"+name);
@@ -53,5 +58,21 @@ public class ItemCast extends ItemTFC {
     public Weight getWeight(ItemStack stack)
     {
         return Weight.LIGHT;
+    }
+
+    @Nullable
+    @Override
+    public Metal getMetal(ItemStack itemStack) {
+        return metal;
+    }
+
+    @Override
+    public int getSmeltAmount(ItemStack itemStack) {
+        return 100;
+    }
+
+    @Override
+    public float getMeltTemp(ItemStack stack) {
+        return metal.getMeltTemp();
     }
 }
