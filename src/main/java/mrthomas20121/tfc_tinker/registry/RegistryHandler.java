@@ -1,5 +1,6 @@
 package mrthomas20121.tfc_tinker.registry;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import mrthomas20121.biolib.library.SmelteryUtils;
 import mrthomas20121.rocksalt.utils.MetalUtils;
@@ -21,7 +22,6 @@ import net.dries007.tfc.api.types.Metal;
 import net.dries007.tfc.api.types.Ore;
 import net.dries007.tfc.objects.Gem;
 import net.dries007.tfc.objects.blocks.BlocksTFC;
-import net.dries007.tfc.objects.fluids.FluidsTFC;
 import net.dries007.tfc.objects.inventory.ingredient.IIngredient;
 import net.dries007.tfc.objects.items.ItemGem;
 import net.dries007.tfc.objects.items.metal.ItemMetal;
@@ -42,16 +42,15 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 import org.apache.commons.lang3.StringUtils;
 import slimeknights.tconstruct.library.TinkerRegistry;
-import slimeknights.tconstruct.library.materials.ExtraMaterialStats;
-import slimeknights.tconstruct.library.materials.HandleMaterialStats;
-import slimeknights.tconstruct.library.materials.HeadMaterialStats;
-import slimeknights.tconstruct.library.materials.Material;
+import slimeknights.tconstruct.library.materials.*;
 import slimeknights.tconstruct.smeltery.TinkerSmeltery;
 import slimeknights.tconstruct.tools.TinkerModifiers;
+import slimeknights.tconstruct.tools.TinkerTraits;
 
 import java.util.ArrayList;
 
@@ -84,6 +83,7 @@ public class RegistryHandler {
                 {
                     Material material = new Material(metal.getRegistryName().toString().replace(":", "_"), metal.getColor());
                     Item.ToolMaterial tool = metal.getToolMetal();
+                    addTraits(material);
                     TinkerRegistry.addMaterial(material);
                     TinkerRegistry.addMaterialStats(material,
                             new HeadMaterialStats(tool.getMaxUses(), tool.getEfficiency(), tool.getAttackDamage(), tool.getHarvestLevel()),
@@ -97,6 +97,7 @@ public class RegistryHandler {
 
     public static void init(FMLInitializationEvent e)
     {
+        OreDictionary.registerOre("grout", TFCTinkerItems.grout);
         CapabilityItemHeat.CUSTOM_ITEMS.put(IIngredient.of(searedBrick), () -> new ItemHeatHandler(null, 0.35f, 1500));
 
         for(MaterialTFC materialTFC : materials) {
@@ -114,6 +115,7 @@ public class RegistryHandler {
                     material.addItem(ItemMetal.get(metal, type), type.getSmeltAmount(), type.getSmeltAmount());
                 }
             }
+            TinkerSmeltery.registerToolpartMeltingCasting(material);
         }
 
         for(Gem gem : Gem.values()) {
@@ -164,20 +166,22 @@ public class RegistryHandler {
                 if(metal.getRegistryName().getPath().equals("bismuth"))
                     fluid.setTemperature((int)metal.getMeltTemp()*2);
 
-                if(!metal.isToolMetal()) TinkerSmeltery.registerOredictMeltingCasting(fluid, cap(metal.getRegistryName().getPath()));
+                TinkerSmeltery.registerOredictMeltingCasting(fluid, cap(metal.getRegistryName().getPath()));
 
                 if(Loader.isModLoaded("tfctech")) {
                     GeneralCompat.onRecipeEvent(metal, fluid);
                 }
 
-                //for(Metal.ItemType type : Metal.ItemType.values()) {
-                 //   if(!metal.isToolMetal() && (type.isArmor() || type.isToolItem()))
-                 //       continue;
+                for(Metal.ItemType type : Metal.ItemType.values()) {
+                    if(!metal.isToolMetal() && (type.isArmor() || type.isToolItem()))
+                        continue;
 
-                 //   if(!new ItemStack(ItemMetal.get(metal, type)).isEmpty()) {
-                 //       TinkerRegistry.registerMelting(new ItemStack(ItemMetal.get(metal, type), 1), fluid, type.getSmeltAmount());
-                 //   }
-                //}
+                    if(ItemMetal.get(metal, type) != null) {
+                        TinkerRegistry.registerMelting(new ItemStack(ItemMetal.get(metal, type), 1), fluid, type.getSmeltAmount());
+                    }
+                }
+
+
 
                 for(String m : TFCTinkerItems.metals) {
                     Metal castMetal = MetalUtils.getMetal(m);
@@ -248,5 +252,27 @@ public class RegistryHandler {
             s.append(StringUtils.capitalize(string));
         }
         return s.toString();
+    }
+
+    private static void addTraits(Material material) {
+        String identifier = material.getIdentifier();
+        switch (identifier) {
+            case "tfc_bismuth_bronze":
+            case "tfc_black_bronze":
+                material.addTrait(TinkerTraits.dense);
+                break;
+            case "tfc_black_steel":
+            case "tfc_red_steel":
+            case "tfc_blue_steel":
+                material.addTrait(TinkerTraits.sharp, MaterialTypes.HEAD);
+                material.addTrait(TinkerTraits.stiff);
+                break;
+            case "tfc_wrought_iron":
+                material.addTrait(TinkerTraits.magnetic2, MaterialTypes.HEAD);
+                material.addTrait(TinkerTraits.magnetic);
+                break;
+            default:
+                material.addTrait(TinkerTraits.poisonous);
+        }
     }
 }
