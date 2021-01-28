@@ -2,6 +2,7 @@ package mrthomas20121.tfc_tinker.objects.items;
 
 import mrthomas20121.tfc_tinker.TFC_Tinker;
 import mrthomas20121.tfc_tinker.objects.Cast;
+import net.dries007.tfc.api.capability.forge.ForgeableHeatableHandler;
 import net.dries007.tfc.api.capability.metal.IMetalItem;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
@@ -9,6 +10,8 @@ import net.dries007.tfc.api.types.Metal;
 import net.dries007.tfc.objects.items.ItemTFC;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import slimeknights.tconstruct.library.TinkerRegistry;
 
 import javax.annotation.Nonnull;
@@ -74,5 +77,12 @@ public class ItemCast extends ItemTFC implements IMetalItem {
     @Override
     public float getMeltTemp(ItemStack stack) {
         return metal.getMeltTemp();
+    }
+
+    @Nullable
+    @Override
+    public ICapabilityProvider initCapabilities(@Nonnull ItemStack stack, @Nullable NBTTagCompound nbt)
+    {
+        return new ForgeableHeatableHandler(nbt, metal.getSpecificHeat(), metal.getMeltTemp());
     }
 }
