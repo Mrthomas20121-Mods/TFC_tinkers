@@ -82,8 +82,13 @@ public class ToolProspectorPick extends AoeToolCore {
 
     @Override
     @Nonnull
-    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, @Nullable EnumFacing facing, float hitX, float hitY, float hitZ)
-    {
-        return ItemProspectorPick.get(Metal.BISMUTH_BRONZE, Metal.ItemType.PROPICK).onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
+    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, @Nullable EnumFacing facing, float hitX, float hitY, float hitZ) {
+        ItemStack stack = player.getHeldItem(hand);
+        if(ToolHelper.isBroken(stack)) {
+            return EnumActionResult.FAIL;
+        }
+        else {
+            return ItemProspectorPick.get(Metal.BISMUTH_BRONZE, Metal.ItemType.PROPICK).onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
+        }
     }
 }
