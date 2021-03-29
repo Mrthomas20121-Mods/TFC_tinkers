@@ -43,7 +43,7 @@ repositories {
     }
 }
 
-version = "1.5.5"
+version = "1.5.6"
 group= "mrthomas20121.tfc_tinker"
 archivesBaseName = "tfc_tinkers"
 
