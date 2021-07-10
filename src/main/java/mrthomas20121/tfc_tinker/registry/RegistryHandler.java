@@ -148,13 +148,13 @@ public class RegistryHandler {
         r.remove(new ResourceLocation("tconstruct:smeltery/grout"));
 
         if(ConfigMain.ConfigTFCTinker.general.register_alloys) {
-            SmelteryUtils.registerAlloy(getFluidStack("bismuth_bronze", 1), getFluidStack("zinc", 2), getFluidStack("copper", 5), getFluidStack("bismuth", 1));
-            SmelteryUtils.registerAlloy(getFluidStack("black_bronze", 1), getFluidStack("copper", 5), getFluidStack("silver", 1), getFluidStack("gold", 1));
-            SmelteryUtils.registerAlloy(getFluidStack("rose_gold", 1), getFluidStack("copper", 2), getFluidStack("gold", 7));
-            SmelteryUtils.registerAlloy(getFluidStack("sterling_silver", 1), getFluidStack("copper", 2), getFluidStack("silver", 6));
-            SmelteryUtils.registerAlloy(getFluidStack("weak_steel", 1), getFluidStack("steel", 5), getFluidStack("nickel", 2), getFluidStack("black_bronze", 2));
-            SmelteryUtils.registerAlloy(getFluidStack("weak_blue_steel", 1), getFluidStack("black_steel", 5), getFluidStack("steel", 2), getFluidStack("bismuth_bronze", 1), getFluidStack("sterling_silver", 1));
-            SmelteryUtils.registerAlloy(getFluidStack("weak_red_steel", 1), getFluidStack("black_steel", 5), getFluidStack("steel", 2), getFluidStack("brass", 1), getFluidStack("rose_gold", 1));
+            SmelteryUtils.registerAlloy(getFluidStack("bismuth_bronze", 8), getFluidStack("zinc", 2), getFluidStack("copper", 5), getFluidStack("bismuth", 1));
+            SmelteryUtils.registerAlloy(getFluidStack("black_bronze", 7), getFluidStack("copper", 5), getFluidStack("silver", 1), getFluidStack("gold", 1));
+            SmelteryUtils.registerAlloy(getFluidStack("rose_gold", 9), getFluidStack("copper", 2), getFluidStack("gold", 7));
+            SmelteryUtils.registerAlloy(getFluidStack("sterling_silver", 8), getFluidStack("copper", 2), getFluidStack("silver", 6));
+            SmelteryUtils.registerAlloy(getFluidStack("weak_steel", 9), getFluidStack("steel", 5), getFluidStack("nickel", 2), getFluidStack("black_bronze", 2));
+            SmelteryUtils.registerAlloy(getFluidStack("weak_blue_steel", 9), getFluidStack("black_steel", 5), getFluidStack("steel", 2), getFluidStack("bismuth_bronze", 1), getFluidStack("sterling_silver", 1));
+            SmelteryUtils.registerAlloy(getFluidStack("weak_red_steel", 9), getFluidStack("black_steel", 5), getFluidStack("steel", 2), getFluidStack("brass", 1), getFluidStack("rose_gold", 1));
         }
 
         for(Metal metal : TFCRegistries.METALS.getValuesCollection()) {
