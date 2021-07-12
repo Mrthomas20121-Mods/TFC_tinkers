@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import slimeknights.tconstruct.library.TinkerRegistry;
+import slimeknights.tconstruct.library.smeltery.ICast;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -20,7 +21,7 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ItemCast extends ItemTFC implements IMetalItem {
+public class ItemCast extends ItemTFC implements IMetalItem, ICast {
 
     private static Map<Metal, EnumMap<Cast, ItemCast>> table = new HashMap<>();
 
