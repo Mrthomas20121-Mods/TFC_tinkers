@@ -63,6 +63,7 @@ public class GeneralCompat {
             SmelteryUtils.registerCasting(new ItemStack(ItemTechMetal.get(metal, ItemTechMetal.ItemType.RACKWHEEL_PIECE)), ItemCast.get(castMetal, Cast.RACKWHEEL_PIECE, 1), fluid, ItemTechMetal.ItemType.RACKWHEEL_PIECE.getSmeltAmount());
             SmelteryUtils.registerCasting(new ItemStack(ItemTechMetal.get(metal, ItemTechMetal.ItemType.LONG_ROD)), ItemCast.get(castMetal, Cast.LONG_ROD, 1), fluid, ItemTechMetal.ItemType.LONG_ROD.getSmeltAmount());
             SmelteryUtils.registerCasting(new ItemStack(ItemTechMetal.get(metal, ItemTechMetal.ItemType.BOLT)), ItemCast.get(castMetal, Cast.BOLT, 1), fluid, ItemTechMetal.ItemType.BOLT.getSmeltAmount());
+            SmelteryUtils.registerCasting(new ItemStack(ItemTechMetal.get(metal, ItemTechMetal.ItemType.SCREW)), ItemCast.get(castMetal, Cast.SCREW, 1), fluid, ItemTechMetal.ItemType.SCREW.getSmeltAmount());
         }
     }
 }
