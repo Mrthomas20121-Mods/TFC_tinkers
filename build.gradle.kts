@@ -57,12 +57,16 @@ minecraft {
 
 dependencies {
     minecraft(group = "net.minecraftforge", name = "forge", version = "1.12.2-14.23.5.2855")
+    
 	// jei
 	implementation(fg.deobf(group = "mezz.jei", name = "jei_1.12.2", version = "4.16.1.302"))
 	
     // tinkers construct
     implementation(fg.deobf(group = "slimeknights.mantle", name = "Mantle", version = "1.12-1.3.3.55"))
 	implementation(fg.deobf(group = "slimeknights", name = "TConstruct", version = "1.12.2-2.13.0.183"))
+
+    // construct armory
+    implementation(fg.deobf(curse(mod = "constructs-armory", projectId = 287683L, fileId = 3174535L)))
 
 	// crafttweaker
 	implementation(fg.deobf(group = "CraftTweaker2", name = "CraftTweaker2-MC1120-Main", version = "1.12-4.1.20.656"))
