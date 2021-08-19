@@ -12,11 +12,11 @@ import net.minecraftforge.fml.common.SidedProxy;
 import mrthomas20121.tfc_tinker.compat.tinkers_construct.Parts;
 
 @Mod(modid = TFC_Tinker.MODID, name = TFC_Tinker.NAME, version = TFC_Tinker.VERSION,
-        dependencies = "required-after:forge@[14.23.5.2847,);"
+        dependencies = "required-after:forge@[14.23.5.2855,);"
         + "required-after:tconstruct@[1.12.2-2.12.0.157,);"
-        + "required-after:biolib@[1.1.1,);"
-        + "required-after:tfc@[1.7.10.168,);"
-        + "required-after:rocksalt@[1.0.1,);")
+        + "required-after:biolib@[1.1.3,);"
+        + "required-after:tfc;"
+        + "required-after:rocksalt@[1.0.3,);")
 public class TFC_Tinker
 {
     @Mod.Instance
