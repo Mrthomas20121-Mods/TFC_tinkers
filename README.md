@@ -1,4 +1,3 @@
 # TFC_Tinker's
-Adding tinker construct materials and tools(prospector pickaxe) to terrafirmacraft.
-
-curseforge link : https://www.curseforge.com/minecraft/mc-mods/tfctinkers
+Add Terrafirmacraft Metal and tools from Terrafirmacraft to Tinkers' construct.
+Curseforge page of the mod : https://www.curseforge.com/minecraft/mc-mods/tfctinkers
