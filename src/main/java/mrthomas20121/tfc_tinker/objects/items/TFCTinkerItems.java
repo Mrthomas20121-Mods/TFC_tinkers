@@ -1,6 +1,6 @@
 package mrthomas20121.tfc_tinker.objects.items;
 
-import mrthomas20121.rocksalt.utils.MetalUtils;
+import mrthomas20121.rocksalt.Utils;
 import mrthomas20121.tfc_tinker.objects.Cast;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -34,7 +34,7 @@ public class TFCTinkerItems {
         {
             for(Cast cast: Cast.values())
             {
-                register(r, new ItemCast(MetalUtils.getMetal(metalName), cast));
+                register(r, new ItemCast(Utils.getMetal(metalName), cast));
             }
         }
     }

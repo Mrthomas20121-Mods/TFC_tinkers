@@ -7,6 +7,7 @@ import net.dries007.tfc.objects.fluids.properties.FluidWrapper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import slimeknights.tconstruct.smeltery.block.BlockTinkerFluid;
 
@@ -22,10 +23,7 @@ public class TFCTinkerBlocks {
 
     public static void init(RegistryEvent.Register<Block> event)
     {
-        for(FluidWrapper fluidWrapper : FluidsTFCTinker.getWaterFluids())
-        {
-            fluidBlocks.add(register(event.getRegistry(), "fluid/"+fluidWrapper.get().getName().toLowerCase(), new BlockTinkerFluid(fluidWrapper.get(), Material.WATER)));
-        }
+        fluidBlocks.add(register(event.getRegistry(), "fluid/clay", new BlockTinkerFluid(FluidRegistry.getFluid("clay"), Material.WATER)));
     }
 
     private static <T extends Block> T register(IForgeRegistry<Block> r, String name, T block)
