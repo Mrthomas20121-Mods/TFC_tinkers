@@ -30,7 +30,7 @@ repositories {
 	curseForge()
     maven {
         name = "Craftweaker"
-        url = uri("https://maven.blamejared.com")
+        url = uri("http://maven.blamejared.com")
     }
     maven { 
         name = "Slimeknight maven"
