@@ -1,9 +1,7 @@
 package mrthomas20121.tfc_tinker.registry;
 
-import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
-import mrthomas20121.biolib.library.SmelteryUtils;
-import mrthomas20121.rocksalt.utils.MetalUtils;
+import mrthomas20121.rocksalt.Utils;
 import mrthomas20121.tfc_tinker.TFC_Tinker;
 import mrthomas20121.tfc_tinker.compat.tfctech.GeneralCompat;
 import mrthomas20121.tfc_tinker.compat.tinkers_construct.MaterialTFC;
@@ -131,10 +129,10 @@ public class RegistryHandler {
                 Metal metal = ore.getMetal();
                 String name = cap(metal.getRegistryName().getPath());
                 Fluid fluid = FluidRegistry.getFluid(metal.getRegistryName().getPath()).setTemperature((int)metal.getMeltTemp()/2);
-                SmelteryUtils.registerMelting("ore"+name+"Rich", fluid, 35);
-                SmelteryUtils.registerMelting("ore"+name+"Normal", fluid, 25);
-                SmelteryUtils.registerMelting("ore"+name+"Poor", fluid, 15);
-                SmelteryUtils.registerMelting("ore"+name+"Small", fluid, 10);
+                TinkerRegistry.registerMelting("ore"+name+"Rich", fluid, 35);
+                TinkerRegistry.registerMelting("ore"+name+"Normal", fluid, 25);
+                TinkerRegistry.registerMelting("ore"+name+"Poor", fluid, 15);
+                TinkerRegistry.registerMelting("ore"+name+"Small", fluid, 10);
             }
         }
 
@@ -148,13 +146,13 @@ public class RegistryHandler {
         r.remove(new ResourceLocation("tconstruct:smeltery/grout"));
 
         if(ConfigMain.ConfigTFCTinker.general.register_alloys) {
-            SmelteryUtils.registerAlloy(getFluidStack("bismuth_bronze", 8), getFluidStack("zinc", 2), getFluidStack("copper", 5), getFluidStack("bismuth", 1));
-            SmelteryUtils.registerAlloy(getFluidStack("black_bronze", 7), getFluidStack("copper", 5), getFluidStack("silver", 1), getFluidStack("gold", 1));
-            SmelteryUtils.registerAlloy(getFluidStack("rose_gold", 9), getFluidStack("copper", 2), getFluidStack("gold", 7));
-            SmelteryUtils.registerAlloy(getFluidStack("sterling_silver", 8), getFluidStack("copper", 2), getFluidStack("silver", 6));
-            SmelteryUtils.registerAlloy(getFluidStack("weak_steel", 9), getFluidStack("steel", 5), getFluidStack("nickel", 2), getFluidStack("black_bronze", 2));
-            SmelteryUtils.registerAlloy(getFluidStack("weak_blue_steel", 9), getFluidStack("black_steel", 5), getFluidStack("steel", 2), getFluidStack("bismuth_bronze", 1), getFluidStack("sterling_silver", 1));
-            SmelteryUtils.registerAlloy(getFluidStack("weak_red_steel", 9), getFluidStack("black_steel", 5), getFluidStack("steel", 2), getFluidStack("brass", 1), getFluidStack("rose_gold", 1));
+            TinkerRegistry.registerAlloy(getFluidStack("bismuth_bronze", 8), getFluidStack("zinc", 2), getFluidStack("copper", 5), getFluidStack("bismuth", 1));
+            TinkerRegistry.registerAlloy(getFluidStack("black_bronze", 7), getFluidStack("copper", 5), getFluidStack("silver", 1), getFluidStack("gold", 1));
+            TinkerRegistry.registerAlloy(getFluidStack("rose_gold", 9), getFluidStack("copper", 2), getFluidStack("gold", 7));
+            TinkerRegistry.registerAlloy(getFluidStack("sterling_silver", 8), getFluidStack("copper", 2), getFluidStack("silver", 6));
+            TinkerRegistry.registerAlloy(getFluidStack("weak_steel", 9), getFluidStack("steel", 5), getFluidStack("nickel", 2), getFluidStack("black_bronze", 2));
+            TinkerRegistry.registerAlloy(getFluidStack("weak_blue_steel", 9), getFluidStack("black_steel", 5), getFluidStack("steel", 2), getFluidStack("bismuth_bronze", 1), getFluidStack("sterling_silver", 1));
+            TinkerRegistry.registerAlloy(getFluidStack("weak_red_steel", 9), getFluidStack("black_steel", 5), getFluidStack("steel", 2), getFluidStack("brass", 1), getFluidStack("rose_gold", 1));
         }
 
         for(Metal metal : TFCRegistries.METALS.getValuesCollection()) {
@@ -184,14 +182,14 @@ public class RegistryHandler {
 
 
                 for(String m : TFCTinkerItems.metals) {
-                    Metal castMetal = MetalUtils.getMetal(m);
+                    Metal castMetal = Utils.getMetal(m);
                     if(metal.isToolMetal()) {
-                        SmelteryUtils.registerCasting(new ItemStack(ItemMetal.get(metal, Metal.ItemType.TUYERE)), ItemCast.get(castMetal, Cast.TUYERE, 1), fluid, Metal.ItemType.TUYERE.getSmeltAmount());
+                        TinkerRegistry.registerTableCasting(new ItemStack(ItemMetal.get(metal, Metal.ItemType.TUYERE)), ItemCast.get(castMetal, Cast.TUYERE, 1), fluid, Metal.ItemType.TUYERE.getSmeltAmount());
                     }
-                    SmelteryUtils.registerCasting(new ItemStack(ItemMetal.get(metal, Metal.ItemType.SHEET)), ItemCast.get(castMetal, Cast.SHEET, 1), fluid, Metal.ItemType.SHEET.getSmeltAmount());
-                    SmelteryUtils.registerCasting(new ItemStack(ItemMetal.get(metal, Metal.ItemType.SCRAP)), ItemCast.get(castMetal, Cast.SCRAP, 1), fluid, Metal.ItemType.SCRAP.getSmeltAmount());
-                    SmelteryUtils.registerCasting(new ItemStack(ItemMetal.get(metal, Metal.ItemType.DOUBLE_SHEET)), ItemCast.get(castMetal, Cast.DOUBLE_SHEET, 1), fluid, Metal.ItemType.DOUBLE_SHEET.getSmeltAmount());
-                    SmelteryUtils.registerCasting(new ItemStack(ItemMetal.get(metal, Metal.ItemType.DOUBLE_INGOT)), ItemCast.get(castMetal, Cast.DOUBLE_INGOT, 1), fluid, Metal.ItemType.DOUBLE_INGOT.getSmeltAmount());
+                    TinkerRegistry.registerTableCasting(new ItemStack(ItemMetal.get(metal, Metal.ItemType.SHEET)), ItemCast.get(castMetal, Cast.SHEET, 1), fluid, Metal.ItemType.SHEET.getSmeltAmount());
+                    TinkerRegistry.registerTableCasting(new ItemStack(ItemMetal.get(metal, Metal.ItemType.SCRAP)), ItemCast.get(castMetal, Cast.SCRAP, 1), fluid, Metal.ItemType.SCRAP.getSmeltAmount());
+                    TinkerRegistry.registerTableCasting(new ItemStack(ItemMetal.get(metal, Metal.ItemType.DOUBLE_SHEET)), ItemCast.get(castMetal, Cast.DOUBLE_SHEET, 1), fluid, Metal.ItemType.DOUBLE_SHEET.getSmeltAmount());
+                    TinkerRegistry.registerTableCasting(new ItemStack(ItemMetal.get(metal, Metal.ItemType.DOUBLE_INGOT)), ItemCast.get(castMetal, Cast.DOUBLE_INGOT, 1), fluid, Metal.ItemType.DOUBLE_INGOT.getSmeltAmount());
                 }
 
                 if(Loader.isModLoaded("tfctech") && ConfigMain.ConfigTFCTinker.general.tfctech) {
@@ -207,7 +205,7 @@ public class RegistryHandler {
         for(Metal metal: TFCRegistries.METALS.getValuesCollection()) {
             for(String metalName : TFCTinkerItems.metals)
             {
-                Metal castMetal = MetalUtils.getMetal(metalName);
+                Metal castMetal = Utils.getMetal(metalName);
 
                 if(metal.isUsable())
                 {
@@ -233,7 +231,7 @@ public class RegistryHandler {
         IForgeRegistry<AnvilRecipe> r = event.getRegistry();
         for(String metalName : TFCTinkerItems.metals)
         {
-            Metal castMetal = MetalUtils.getMetal(metalName);
+            Metal castMetal = Utils.getMetal(metalName);
             r.register(new AnvilRecipe(new ResourceLocation("tfc", metalName+"_blank_cast"), IIngredient.of(ItemMetal.get(castMetal, Metal.ItemType.DOUBLE_INGOT)), ItemCast.get(castMetal, Cast.BLANK, 1), castMetal.getTier(), SmithingSkill.Type.GENERAL, ForgeRule.BEND_SECOND_LAST, ForgeRule.HIT_ANY, ForgeRule.DRAW_ANY));
         }
     }
