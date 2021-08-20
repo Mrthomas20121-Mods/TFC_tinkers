@@ -58,32 +58,33 @@ minecraft {
 dependencies {
     minecraft(group = "net.minecraftforge", name = "forge", version = "1.12.2-14.23.5.2855")
     
-	// jei
-	implementation(fg.deobf(group = "mezz.jei", name = "jei_1.12.2", version = "4.16.1.302"))
-	
+    // jei
+    implementation(fg.deobf(group = "mezz.jei", name = "jei_1.12.2", version = "4.16.1.302"))
+
     // tinkers construct
     implementation(fg.deobf(group = "slimeknights.mantle", name = "Mantle", version = "1.12-1.3.3.55"))
-	implementation(fg.deobf(group = "slimeknights", name = "TConstruct", version = "1.12.2-2.13.0.183"))
+    implementation(fg.deobf(group = "slimeknights", name = "TConstruct", version = "1.12.2-2.13.0.183"))
 
     // construct armory
     implementation(fg.deobf(curse(mod = "constructs-armory", projectId = 287683L, fileId = 3174535L)))
 
-	// crafttweaker
-	implementation(fg.deobf(group = "CraftTweaker2", name = "CraftTweaker2-MC1120-Main", version = "1.12-4.1.20.656"))
-	implementation(fg.deobf(group = "com.blamejared", name = "MTLib", version = "3.0.4.8"))
+    // crafttweaker
+    implementation(fg.deobf(group = "CraftTweaker2", name = "ZenScript", version = "4.1.20.658"))
+    implementation(fg.deobf(group = "CraftTweaker2", name = "CraftTweaker2-API", version = "4.1.20.658"))
+    implementation(fg.deobf(group = "CraftTweaker2", name = "CraftTweaker2-MC1120-Main", version = "1.12-4.1.20.656"))
 
-	// tfc
-	implementation(fg.deobf(curse(mod = "tfcraft", projectId = 302973L, fileId = 3406948L)))
-	
+    // tfc
+    implementation(fg.deobf(curse(mod = "tfcraft", projectId = 302973L, fileId = 3406948L)))
+
     // tfc metallum
-	implementation(fg.deobf(curse(mod = "tfc-metallum", projectId = 339156L, fileId = 3062588L)))
+    implementation(fg.deobf(curse(mod = "tfc-metallum", projectId = 339156L, fileId = 3062588L)))
 
     // tfc tech
     implementation(fg.deobf(curse(mod = "tfctech-unofficial", projectId = 340660L, fileId = 3209033L)))
-    
+
     // rocksalt version 1.0.4b
     implementation(fg.deobf(curse(mod = "rocksalt", projectId = 398969L, fileId = 3419071L)))
-    
+
     // bio library
     implementation(fg.deobf(curse(mod = "biolib", projectId = 390354L, fileId = 3411757L)))
 }
