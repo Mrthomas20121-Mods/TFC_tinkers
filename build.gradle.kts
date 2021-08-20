@@ -77,6 +77,9 @@ dependencies {
 	
     // tfc metallum
 	implementation(fg.deobf(curse(mod = "tfc-metallum", projectId = 339156L, fileId = 3062588L)))
+
+    // tfc tech
+    implementation(fg.deobf(curse(mod = "tfctech-unofficial", projectId = 340660L, fileId = 340660L)))
     
     // rocksalt version 1.0.4b
     implementation(fg.deobf(curse(mod = "rocksalt", projectId = 398969L, fileId = 3419071L)))
