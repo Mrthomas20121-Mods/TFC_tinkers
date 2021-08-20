@@ -1,7 +1,6 @@
 package mrthomas20121.tfc_tinker.compat.tfctech;
 
-import mrthomas20121.biolib.library.SmelteryUtils;
-import mrthomas20121.rocksalt.utils.MetalUtils;
+import mrthomas20121.rocksalt.Utils;
 import mrthomas20121.tfc_tinker.objects.Cast;
 import mrthomas20121.tfc_tinker.objects.items.ItemCast;
 import mrthomas20121.tfc_tinker.objects.items.TFCTinkerItems;
@@ -36,7 +35,6 @@ public class GeneralCompat {
             r.register(new WeldingRecipe(new ResourceLocation("tfc", metalName+"_"+Cast.SLEEVE.name().toLowerCase()+"_from_"+metal.getRegistryName().getPath()), IIngredient.of(ItemCast.get(castMetal, Cast.BLANK)), IIngredient.of(ItemTechMetal.get(metal, ItemTechMetal.ItemType.SLEEVE)), ItemCast.get(castMetal, Cast.SLEEVE, 1), metal.getTier()));
     }
 
-    @SuppressWarnings("staticInspection")
     public static void onRecipeEvent(Metal metal, Fluid fluid)
     {
         for(ItemTechMetal.ItemType type : ItemTechMetal.ItemType.values())
@@ -47,23 +45,23 @@ public class GeneralCompat {
         for(String metalName : TFCTinkerItems.metals)
         {
 
-            Metal castMetal = MetalUtils.getMetal(metalName);
-            String name = metal.getRegistryName().getPath();
+            Metal castMetal = Utils.getMetal(metalName);
 
             if(ItemBlowpipe.get(metal) != null)
             {
-                SmelteryUtils.registerCasting(new ItemStack(ItemBlowpipe.get(metal)), ItemCast.get(castMetal, Cast.BLOWPIPE, 1), fluid, 200);
+                TinkerRegistry.registerTableCasting(new ItemStack(ItemBlowpipe.get(metal)), ItemCast.get(castMetal, Cast.BLOWPIPE, 1), fluid, 200);
             }
 
-            if(ItemTechMetal.get(metal, ItemTechMetal.ItemType.SLEEVE) != null)
-                SmelteryUtils.registerCasting(new ItemStack(ItemTechMetal.get(metal, ItemTechMetal.ItemType.SLEEVE)), ItemCast.get(castMetal, Cast.SLEEVE, 1), fluid, ItemTechMetal.ItemType.SLEEVE.getSmeltAmount());
+            if(ItemTechMetal.get(metal, ItemTechMetal.ItemType.SLEEVE) != null) {
+                TinkerRegistry.registerTableCasting(new ItemStack(ItemTechMetal.get(metal, ItemTechMetal.ItemType.SLEEVE)), ItemCast.get(castMetal, Cast.SLEEVE, 1), fluid, ItemTechMetal.ItemType.SLEEVE.getSmeltAmount());
+            }
 
-            SmelteryUtils.registerCasting(new ItemStack(ItemTechMetal.get(metal, ItemTechMetal.ItemType.WIRE)), ItemCast.get(castMetal, Cast.WIRE, 1), fluid, ItemTechMetal.ItemType.WIRE.getSmeltAmount());
-            SmelteryUtils.registerCasting(new ItemStack(ItemTechMetal.get(metal, ItemTechMetal.ItemType.RACKWHEEL)), ItemCast.get(castMetal, Cast.RACKWHEEL, 1), fluid, ItemTechMetal.ItemType.RACKWHEEL.getSmeltAmount());
-            SmelteryUtils.registerCasting(new ItemStack(ItemTechMetal.get(metal, ItemTechMetal.ItemType.RACKWHEEL_PIECE)), ItemCast.get(castMetal, Cast.RACKWHEEL_PIECE, 1), fluid, ItemTechMetal.ItemType.RACKWHEEL_PIECE.getSmeltAmount());
-            SmelteryUtils.registerCasting(new ItemStack(ItemTechMetal.get(metal, ItemTechMetal.ItemType.LONG_ROD)), ItemCast.get(castMetal, Cast.LONG_ROD, 1), fluid, ItemTechMetal.ItemType.LONG_ROD.getSmeltAmount());
-            SmelteryUtils.registerCasting(new ItemStack(ItemTechMetal.get(metal, ItemTechMetal.ItemType.BOLT)), ItemCast.get(castMetal, Cast.BOLT, 1), fluid, ItemTechMetal.ItemType.BOLT.getSmeltAmount());
-            SmelteryUtils.registerCasting(new ItemStack(ItemTechMetal.get(metal, ItemTechMetal.ItemType.SCREW)), ItemCast.get(castMetal, Cast.SCREW, 1), fluid, ItemTechMetal.ItemType.SCREW.getSmeltAmount());
+            TinkerRegistry.registerTableCasting(new ItemStack(ItemTechMetal.get(metal, ItemTechMetal.ItemType.WIRE)), ItemCast.get(castMetal, Cast.WIRE, 1), fluid, ItemTechMetal.ItemType.WIRE.getSmeltAmount());
+            TinkerRegistry.registerTableCasting(new ItemStack(ItemTechMetal.get(metal, ItemTechMetal.ItemType.RACKWHEEL)), ItemCast.get(castMetal, Cast.RACKWHEEL, 1), fluid, ItemTechMetal.ItemType.RACKWHEEL.getSmeltAmount());
+            TinkerRegistry.registerTableCasting(new ItemStack(ItemTechMetal.get(metal, ItemTechMetal.ItemType.RACKWHEEL_PIECE)), ItemCast.get(castMetal, Cast.RACKWHEEL_PIECE, 1), fluid, ItemTechMetal.ItemType.RACKWHEEL_PIECE.getSmeltAmount());
+            TinkerRegistry.registerTableCasting(new ItemStack(ItemTechMetal.get(metal, ItemTechMetal.ItemType.LONG_ROD)), ItemCast.get(castMetal, Cast.LONG_ROD, 1), fluid, ItemTechMetal.ItemType.LONG_ROD.getSmeltAmount());
+            TinkerRegistry.registerTableCasting(new ItemStack(ItemTechMetal.get(metal, ItemTechMetal.ItemType.BOLT)), ItemCast.get(castMetal, Cast.BOLT, 1), fluid, ItemTechMetal.ItemType.BOLT.getSmeltAmount());
+            TinkerRegistry.registerTableCasting(new ItemStack(ItemTechMetal.get(metal, ItemTechMetal.ItemType.SCREW)), ItemCast.get(castMetal, Cast.SCREW, 1), fluid, ItemTechMetal.ItemType.SCREW.getSmeltAmount());
         }
     }
 }
