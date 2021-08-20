@@ -36,7 +36,7 @@ public class TFC_Tinker
         MinecraftForge.EVENT_BUS.register(this);
         logger = event.getModLog();
         proxy.preInit(event);
-        FluidsTFCTinker.registerFluids();
+        FluidsTFCTinker.init();
    }
 
     @Mod.EventHandler

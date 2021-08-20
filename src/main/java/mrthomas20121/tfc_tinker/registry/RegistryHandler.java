@@ -3,6 +3,7 @@ package mrthomas20121.tfc_tinker.registry;
 import com.google.common.collect.Lists;
 import mrthomas20121.rocksalt.Utils;
 import mrthomas20121.tfc_tinker.TFC_Tinker;
+import mrthomas20121.tfc_tinker.compat.conarm.ConarmCompat;
 import mrthomas20121.tfc_tinker.compat.tfctech.GeneralCompat;
 import mrthomas20121.tfc_tinker.compat.tinkers_construct.MaterialTFC;
 import mrthomas20121.tfc_tinker.ConfigMain;
@@ -73,7 +74,7 @@ public class RegistryHandler {
         ArrayList<String> blacklists = Lists.newArrayList(ConfigMain.ConfigTFCTinker.material.material_blacklists);
         for(Metal metal : event.getRegistry().getValuesCollection()) {
             String metalName = metal.getRegistryName().getPath();
-            if(metal.isToolMetal())
+            if(metal.isToolMetal() && metal.isArmorMetal() && metal.isUsable())
             {
                 if(metalName.equals("boron") && Loader.isModLoaded("nuclearcraft"))
                     continue;
@@ -88,6 +89,7 @@ public class RegistryHandler {
                             new HandleMaterialStats(0.9f, tool.getMaxUses()/2),
                             new ExtraMaterialStats(tool.getMaxUses()/10));
                     materials.add(new MaterialTFC(metal, material));
+                    ConarmCompat.addConarmSupport(metal, material);
                 }
             }
         }

@@ -4,7 +4,6 @@ import c4.conarm.common.armor.traits.ArmorTraits;
 import c4.conarm.lib.materials.CoreMaterialStats;
 import c4.conarm.lib.materials.PlatesMaterialStats;
 import c4.conarm.lib.materials.TrimMaterialStats;
-import mrthomas20121.biolib.util.ConarmUtil;
 import net.dries007.tfc.api.types.Metal;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.materials.Material;
