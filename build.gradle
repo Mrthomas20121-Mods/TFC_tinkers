@@ -90,7 +90,7 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-    mavenCentral()
+    maven { url = 'https://maven.minecraftforge.net' }
     maven { // JEI and Tinkers
         name 'Prog Maven'
         url 'https://dvs1.progwml6.com/files/maven'
@@ -117,9 +117,7 @@ repositories {
 }
 
 dependencies {
-    def mcDep = 'net.minecraftforge:forge:1.18.2-40.0.36'
-
-    minecraft mcDep
+    minecraft 'net.minecraftforge:forge:1.18.2-40.1.0'
 
     implementation fg.deobf("tfc:TerraFirmaCraft-Forge-1.18.2:2.0.15-alpha")
 
@@ -132,10 +130,6 @@ dependencies {
     if (System.getProperty("idea.sync.active") != "true") {
         annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
     }
-
-    annotationProcessor 'com.google.code.gson:gson:2.8.6'
-    annotationProcessor 'org.reflections:reflections:0.9.10'
-    annotationProcessor mcDep
 }
 
 jar {
