@@ -20,7 +20,6 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
-apply from: 'https://raw.githubusercontent.com/SizableShrimp/Forge-Class-Remapper/main/classremapper.gradle'
 
 version = mod_version
 group = 'mrthomas20121.tfc_tinkers'
@@ -91,6 +90,11 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
+    mavenCentral()
+    maven { // JEI and Tinkers
+        name 'Prog Maven'
+        url 'https://dvs1.progwml6.com/files/maven'
+    }
     maven {
         name "Curio"
         url "https://maven.theillusivec4.top/"
@@ -98,10 +102,6 @@ repositories {
     maven {
         name 'crafttweaker'
         url 'https://maven.blamejared.com'
-    }
-    maven { // JEI
-        name 'Prog Maven'
-        url 'https://dvs1.progwml6.com/files/maven'
     }
     maven {
         name 'cursemaven'
