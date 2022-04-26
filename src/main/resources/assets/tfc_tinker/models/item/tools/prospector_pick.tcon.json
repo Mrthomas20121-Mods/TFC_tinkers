@@ -1,9 +1,0 @@
-{
-  "parent": "item/handheld",
-  "textures": {
-    "layer0": "tfc_tinker:items/propick/tool_rod",
-	"layer1": "tfc_tinker:items/propick/head",
-	"layer2": "tfc_tinker:items/propick/binding",
-    "broken1": "tfc_tinker:items/propick/broken_head"
-  }
-}
