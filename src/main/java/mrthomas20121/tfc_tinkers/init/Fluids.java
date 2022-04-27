@@ -15,7 +15,6 @@ public class Fluids {
 
     public static FluidObject<ForgeFlowingFluid> ethanol = FLUIDS.register("ethanol", hotBuilder("ethanol", 1500), Material.WATER, 0);
 
-
     private static FluidAttributes.Builder hotBuilder(String name, int temp) {
         return FluidAttributes.builder(new ResourceLocation(String.format("tfc_tinkers:block/fluids/%s_still", name)), new ResourceLocation(String.format("tfc_tinkers:block/fluids/%s_flow", name))).density(2000).viscosity(10000).temperature(temp).sound(SoundEvents.BUCKET_FILL_LAVA, SoundEvents.BUCKET_EMPTY_LAVA);
     }
